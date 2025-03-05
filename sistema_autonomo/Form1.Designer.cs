@@ -31,7 +31,7 @@
             this.lblNomePartida = new System.Windows.Forms.Label();
             this.txtNomePartida = new System.Windows.Forms.TextBox();
             this.lblSenhaPartida = new System.Windows.Forms.Label();
-            this.txtSenhaPartida = new System.Windows.Forms.TextBox();
+            this.txtSenhaPartidaCriar = new System.Windows.Forms.TextBox();
             this.lblNomeGrupo = new System.Windows.Forms.Label();
             this.txtNomeGrupo = new System.Windows.Forms.TextBox();
             this.lblIdPartida = new System.Windows.Forms.Label();
@@ -44,11 +44,13 @@
             this.btnEntrarPartida = new System.Windows.Forms.Button();
             this.lstJogadores = new System.Windows.Forms.ListBox();
             this.btnListarJogadores = new System.Windows.Forms.Button();
-            this.lblIdJogadorObtido = new System.Windows.Forms.Label();
             this.lblSenha = new System.Windows.Forms.Label();
             this.lblVersao = new System.Windows.Forms.Label();
             this.btnCriarPartida = new System.Windows.Forms.Button();
             this.lblIdPartidaCriada = new System.Windows.Forms.Label();
+            this.txtSenha = new System.Windows.Forms.TextBox();
+            this.lblIdJogador = new System.Windows.Forms.Label();
+            this.lblSenhaJogador = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblNomePartida
@@ -76,12 +78,12 @@
             this.lblSenhaPartida.TabIndex = 2;
             this.lblSenhaPartida.Text = "Senha da Partida";
             // 
-            // txtSenhaPartida
+            // txtSenhaPartidaCriar
             // 
-            this.txtSenhaPartida.Location = new System.Drawing.Point(26, 64);
-            this.txtSenhaPartida.Name = "txtSenhaPartida";
-            this.txtSenhaPartida.Size = new System.Drawing.Size(137, 20);
-            this.txtSenhaPartida.TabIndex = 3;
+            this.txtSenhaPartidaCriar.Location = new System.Drawing.Point(26, 64);
+            this.txtSenhaPartidaCriar.Name = "txtSenhaPartidaCriar";
+            this.txtSenhaPartidaCriar.Size = new System.Drawing.Size(137, 20);
+            this.txtSenhaPartidaCriar.TabIndex = 3;
             // 
             // lblNomeGrupo
             // 
@@ -102,7 +104,7 @@
             // lblIdPartida
             // 
             this.lblIdPartida.AutoSize = true;
-            this.lblIdPartida.Location = new System.Drawing.Point(23, 126);
+            this.lblIdPartida.Location = new System.Drawing.Point(392, 94);
             this.lblIdPartida.Name = "lblIdPartida";
             this.lblIdPartida.Size = new System.Drawing.Size(67, 13);
             this.lblIdPartida.TabIndex = 6;
@@ -110,7 +112,7 @@
             // 
             // txtIdPartida
             // 
-            this.txtIdPartida.Location = new System.Drawing.Point(26, 142);
+            this.txtIdPartida.Location = new System.Drawing.Point(395, 110);
             this.txtIdPartida.Name = "txtIdPartida";
             this.txtIdPartida.Size = new System.Drawing.Size(137, 20);
             this.txtIdPartida.TabIndex = 7;
@@ -144,7 +146,7 @@
             // lblNomeJogador
             // 
             this.lblNomeJogador.AutoSize = true;
-            this.lblNomeJogador.Location = new System.Drawing.Point(23, 293);
+            this.lblNomeJogador.Location = new System.Drawing.Point(392, 9);
             this.lblNomeJogador.Name = "lblNomeJogador";
             this.lblNomeJogador.Size = new System.Drawing.Size(91, 13);
             this.lblNomeJogador.TabIndex = 12;
@@ -152,19 +154,20 @@
             // 
             // txtNomeJogador
             // 
-            this.txtNomeJogador.Location = new System.Drawing.Point(26, 309);
+            this.txtNomeJogador.Location = new System.Drawing.Point(395, 25);
             this.txtNomeJogador.Name = "txtNomeJogador";
-            this.txtNomeJogador.Size = new System.Drawing.Size(120, 20);
+            this.txtNomeJogador.Size = new System.Drawing.Size(137, 20);
             this.txtNomeJogador.TabIndex = 13;
             // 
             // btnEntrarPartida
             // 
-            this.btnEntrarPartida.Location = new System.Drawing.Point(160, 296);
+            this.btnEntrarPartida.Location = new System.Drawing.Point(579, 25);
             this.btnEntrarPartida.Name = "btnEntrarPartida";
-            this.btnEntrarPartida.Size = new System.Drawing.Size(121, 36);
+            this.btnEntrarPartida.Size = new System.Drawing.Size(75, 58);
             this.btnEntrarPartida.TabIndex = 14;
             this.btnEntrarPartida.Text = "Entrar na Partida";
             this.btnEntrarPartida.UseVisualStyleBackColor = true;
+            this.btnEntrarPartida.Click += new System.EventHandler(this.btnEntrarPartida_Click);
             // 
             // lstJogadores
             // 
@@ -184,20 +187,10 @@
             this.btnListarJogadores.UseVisualStyleBackColor = true;
             this.btnListarJogadores.Click += new System.EventHandler(this.btnListarJogadores_Click);
             // 
-            // lblIdJogadorObtido
-            // 
-            this.lblIdJogadorObtido.AutoSize = true;
-            this.lblIdJogadorObtido.Location = new System.Drawing.Point(23, 353);
-            this.lblIdJogadorObtido.Name = "lblIdJogadorObtido";
-            this.lblIdJogadorObtido.Size = new System.Drawing.Size(93, 13);
-            this.lblIdJogadorObtido.TabIndex = 17;
-            this.lblIdJogadorObtido.Text = "ID Jogador Obtido";
-            this.lblIdJogadorObtido.UseMnemonic = false;
-            // 
             // lblSenha
             // 
             this.lblSenha.AutoSize = true;
-            this.lblSenha.Location = new System.Drawing.Point(157, 353);
+            this.lblSenha.Location = new System.Drawing.Point(392, 48);
             this.lblSenha.Name = "lblSenha";
             this.lblSenha.Size = new System.Drawing.Size(38, 13);
             this.lblSenha.TabIndex = 18;
@@ -230,16 +223,43 @@
             this.lblIdPartidaCriada.TabIndex = 21;
             this.lblIdPartidaCriada.Text = "ID Partida Criada";
             // 
+            // txtSenha
+            // 
+            this.txtSenha.Location = new System.Drawing.Point(395, 64);
+            this.txtSenha.Name = "txtSenha";
+            this.txtSenha.Size = new System.Drawing.Size(137, 20);
+            this.txtSenha.TabIndex = 22;
+            // 
+            // lblIdJogador
+            // 
+            this.lblIdJogador.AutoSize = true;
+            this.lblIdJogador.Location = new System.Drawing.Point(392, 202);
+            this.lblIdJogador.Name = "lblIdJogador";
+            this.lblIdJogador.Size = new System.Drawing.Size(108, 13);
+            this.lblIdJogador.TabIndex = 23;
+            this.lblIdJogador.Text = "ID do Jogador Obtido";
+            // 
+            // lblSenhaJogador
+            // 
+            this.lblSenhaJogador.AutoSize = true;
+            this.lblSenhaJogador.Location = new System.Drawing.Point(392, 230);
+            this.lblSenhaJogador.Name = "lblSenhaJogador";
+            this.lblSenhaJogador.Size = new System.Drawing.Size(128, 13);
+            this.lblSenhaJogador.TabIndex = 25;
+            this.lblSenhaJogador.Text = "Senha do Jogador Obtida";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(947, 531);
+            this.Controls.Add(this.lblSenhaJogador);
+            this.Controls.Add(this.lblIdJogador);
+            this.Controls.Add(this.txtSenha);
             this.Controls.Add(this.lblIdPartidaCriada);
             this.Controls.Add(this.btnCriarPartida);
             this.Controls.Add(this.lblVersao);
             this.Controls.Add(this.lblSenha);
-            this.Controls.Add(this.lblIdJogadorObtido);
             this.Controls.Add(this.btnListarJogadores);
             this.Controls.Add(this.lstJogadores);
             this.Controls.Add(this.btnEntrarPartida);
@@ -252,7 +272,7 @@
             this.Controls.Add(this.lblIdPartida);
             this.Controls.Add(this.txtNomeGrupo);
             this.Controls.Add(this.lblNomeGrupo);
-            this.Controls.Add(this.txtSenhaPartida);
+            this.Controls.Add(this.txtSenhaPartidaCriar);
             this.Controls.Add(this.lblSenhaPartida);
             this.Controls.Add(this.txtNomePartida);
             this.Controls.Add(this.lblNomePartida);
@@ -268,7 +288,7 @@
         private System.Windows.Forms.Label lblNomePartida;
         private System.Windows.Forms.TextBox txtNomePartida;
         private System.Windows.Forms.Label lblSenhaPartida;
-        private System.Windows.Forms.TextBox txtSenhaPartida;
+        private System.Windows.Forms.TextBox txtSenhaPartidaCriar;
         private System.Windows.Forms.Label lblNomeGrupo;
         private System.Windows.Forms.TextBox txtNomeGrupo;
         private System.Windows.Forms.Label lblIdPartida;
@@ -281,11 +301,13 @@
         private System.Windows.Forms.Button btnEntrarPartida;
         private System.Windows.Forms.ListBox lstJogadores;
         private System.Windows.Forms.Button btnListarJogadores;
-        private System.Windows.Forms.Label lblIdJogadorObtido;
         private System.Windows.Forms.Label lblSenha;
         private System.Windows.Forms.Label lblVersao;
         private System.Windows.Forms.Button btnCriarPartida;
         private System.Windows.Forms.Label lblIdPartidaCriada;
+        private System.Windows.Forms.TextBox txtSenha;
+        private System.Windows.Forms.Label lblIdJogador;
+        private System.Windows.Forms.Label lblSenhaJogador;
     }
 }
 

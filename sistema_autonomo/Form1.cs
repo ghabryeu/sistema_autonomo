@@ -66,8 +66,8 @@ namespace sistema_autonomo
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
             string nomePartida = txtNomePartida.Text;
-            string senhaPartida = txtSenhaPartida.Text;
-            string idPartida = Jogo.CriarPartida(nomePartida, senhaPartida, "Juízes de Common Law");
+            string senhaPartidaCriar = txtSenhaPartidaCriar.Text;
+            string idPartida = Jogo.CriarPartida(nomePartida, senhaPartidaCriar, "Juízes de Common Law");
 
             string partida = idPartida.ToString();
             string[] dadosPartida = partida.Split(',');
@@ -75,6 +75,23 @@ namespace sistema_autonomo
 
             txtIdPartida.Text = idPartidaCriada.ToString();
             lblIdPartidaCriada.Text = idPartidaCriada.ToString();
+        }
+
+        private void btnEntrarPartida_Click(object sender, EventArgs e)
+        {
+            string nomeJogador = txtNomeJogador.Text;
+            string senhaPartida = txtSenha.Text;
+            string idPartidaString = txtIdPartida.Text;
+            int idPartida = Convert.ToInt32(idPartidaString);
+
+            string retornoEntrar = Jogo.Entrar(idPartida, nomeJogador, senhaPartida);
+            string[] entrarPartidaDados = retornoEntrar.Split(',');
+
+            string idJogador = entrarPartidaDados[0];
+            string senhaJogador = entrarPartidaDados[1];
+
+            lblIdJogador.Text = idJogador;
+            lblSenhaJogador.Text = senhaJogador;
         }
     }
 }
