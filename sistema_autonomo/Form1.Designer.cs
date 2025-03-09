@@ -51,6 +51,14 @@
             this.txtSenha = new System.Windows.Forms.TextBox();
             this.lblIdJogador = new System.Windows.Forms.Label();
             this.lblSenhaJogador = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnIniciarJogo = new System.Windows.Forms.Button();
+            this.txtIDJogador = new System.Windows.Forms.TextBox();
+            this.txtSenhaJogador = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblVezJogador = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblNomePartida
@@ -242,17 +250,94 @@
             // lblSenhaJogador
             // 
             this.lblSenhaJogador.AutoSize = true;
-            this.lblSenhaJogador.Location = new System.Drawing.Point(392, 230);
+            this.lblSenhaJogador.Location = new System.Drawing.Point(392, 238);
             this.lblSenhaJogador.Name = "lblSenhaJogador";
             this.lblSenhaJogador.Size = new System.Drawing.Size(128, 13);
             this.lblSenhaJogador.TabIndex = 25;
             this.lblSenhaJogador.Text = "Senha do Jogador Obtida";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(392, 189);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(59, 13);
+            this.label1.TabIndex = 26;
+            this.label1.Text = "ID Jogador";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(392, 225);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(79, 13);
+            this.label2.TabIndex = 27;
+            this.label2.Text = "Senha Jogador";
+            // 
+            // btnIniciarJogo
+            // 
+            this.btnIniciarJogo.Location = new System.Drawing.Point(395, 321);
+            this.btnIniciarJogo.Name = "btnIniciarJogo";
+            this.btnIniciarJogo.Size = new System.Drawing.Size(75, 56);
+            this.btnIniciarJogo.TabIndex = 28;
+            this.btnIniciarJogo.Text = "Iniciar Jogo";
+            this.btnIniciarJogo.UseVisualStyleBackColor = true;
+            this.btnIniciarJogo.Click += new System.EventHandler(this.btnIniciarJogo_Click);
+            // 
+            // txtIDJogador
+            // 
+            this.txtIDJogador.Location = new System.Drawing.Point(395, 405);
+            this.txtIDJogador.Name = "txtIDJogador";
+            this.txtIDJogador.Size = new System.Drawing.Size(137, 20);
+            this.txtIDJogador.TabIndex = 29;
+            // 
+            // txtSenhaJogador
+            // 
+            this.txtSenhaJogador.Location = new System.Drawing.Point(395, 454);
+            this.txtSenhaJogador.Name = "txtSenhaJogador";
+            this.txtSenhaJogador.Size = new System.Drawing.Size(137, 20);
+            this.txtSenhaJogador.TabIndex = 30;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(395, 389);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(59, 13);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "ID Jogador";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(395, 438);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(38, 13);
+            this.label4.TabIndex = 32;
+            this.label4.Text = "Senha";
+            // 
+            // lblVezJogador
+            // 
+            this.lblVezJogador.AutoSize = true;
+            this.lblVezJogador.Location = new System.Drawing.Point(497, 350);
+            this.lblVezJogador.Name = "lblVezJogador";
+            this.lblVezJogador.Size = new System.Drawing.Size(81, 13);
+            this.lblVezJogador.TabIndex = 33;
+            this.lblVezJogador.Text = "Jogador da Vez";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(947, 531);
+            this.Controls.Add(this.lblVezJogador);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.txtSenhaJogador);
+            this.Controls.Add(this.txtIDJogador);
+            this.Controls.Add(this.btnIniciarJogo);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblSenhaJogador);
             this.Controls.Add(this.lblIdJogador);
             this.Controls.Add(this.txtSenha);
@@ -308,6 +393,14 @@
         private System.Windows.Forms.TextBox txtSenha;
         private System.Windows.Forms.Label lblIdJogador;
         private System.Windows.Forms.Label lblSenhaJogador;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnIniciarJogo;
+        private System.Windows.Forms.TextBox txtIDJogador;
+        private System.Windows.Forms.TextBox txtSenhaJogador;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblVezJogador;
     }
 }
 

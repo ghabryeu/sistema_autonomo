@@ -85,13 +85,25 @@ namespace sistema_autonomo
             int idPartida = Convert.ToInt32(idPartidaString);
 
             string retornoEntrar = Jogo.Entrar(idPartida, nomeJogador, senhaPartida);
+            string entrarPartidaDadosString = idPartida.ToString();
             string[] entrarPartidaDados = retornoEntrar.Split(',');
 
             string idJogador = entrarPartidaDados[0];
-            string senhaJogador = entrarPartidaDados[1];
+            string senhaJogador = entrarPartidaDados[1].ToString();
 
             lblIdJogador.Text = idJogador;
             lblSenhaJogador.Text = senhaJogador;
+        }
+
+        private void btnIniciarJogo_Click(object sender, EventArgs e)
+        {
+            string idJogadorString = txtIDJogador.Text;
+            int idJogador = Convert.ToInt32(idJogadorString);
+            string senhaJogador = txtSenhaJogador.Text;
+            string vezJogador = Jogo.Iniciar(idJogador, senhaJogador);
+
+            // mudar status da partidade de A para J
+
         }
     }
 }
