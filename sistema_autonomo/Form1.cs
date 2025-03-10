@@ -13,10 +13,15 @@ namespace sistema_autonomo
 {
     public partial class Form1: Form
     {
+        Jogador jogador = new Jogador();
+        Partida partida = new Partida();
+
         public Form1()
         {
             InitializeComponent();
             lblVersao.Text = Jogo.versao; // versão da dll
+            lblGrupo.Text = "Juízes de Common Law"; // label 
+            txtNomeGrupo.Text = "Juízes de Common Law"; // txt
 
             // itens da combobox
             cboTipoPartida.Items.Add("Todos");
@@ -24,9 +29,6 @@ namespace sistema_autonomo
             cboTipoPartida.Items.Add("Jogando");
             cboTipoPartida.Items.Add("Encerrando");
             cboTipoPartida.SelectedIndex = 0;
-
-            // nome do grupo fixado 
-            txtNomeGrupo.Text = "Juízes de Common Law";
         }
 
         private void btnListarPartida_Click(object sender, EventArgs e)
@@ -65,12 +67,12 @@ namespace sistema_autonomo
 
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
-            string nomePartida = txtNomePartida.Text;
-            string senhaPartidaCriar = txtSenhaPartidaCriar.Text;
-            string idPartida = Jogo.CriarPartida(nomePartida, senhaPartidaCriar, "Juízes de Common Law");
+            partida.nome = txtNomePartida.Text;
+            partida.senha = txtSenhaPartidaCriar.Text;
+            partida.id = Jogo.CriarPartida(partida.nome, partida.senha, "Juízes de Common Law");
 
-            string partida = idPartida.ToString();
-            string[] dadosPartida = partida.Split(',');
+            string retornoPartida = partida.id.ToString();
+            string[] dadosPartida = retornoPartida.Split(',');
             int idPartidaCriada = Convert.ToInt32(dadosPartida[0]);
 
             txtIdPartida.Text = idPartidaCriada.ToString();
@@ -79,17 +81,16 @@ namespace sistema_autonomo
 
         private void btnEntrarPartida_Click(object sender, EventArgs e)
         {
-            string nomeJogador = txtNomeJogador.Text;
-            string senhaPartida = txtSenha.Text;
-            string idPartidaString = txtIdPartida.Text;
-            int idPartida = Convert.ToInt32(idPartidaString);
+            jogador.nome = txtNomeJogador.Text;
+            partida.senha = txtSenha.Text;
+            partida.id = txtIdPartida.Text;
 
-            string retornoEntrar = Jogo.Entrar(idPartida, nomeJogador, senhaPartida);
-            string entrarPartidaDadosString = idPartida.ToString();
-            string[] entrarPartidaDados = retornoEntrar.Split(',');
+            string entrarPartidaDados = jogador.EntrarPartida(partida.id, partida.senha);
+            string retornoDados = entrarPartidaDados.ToString();
+            string[] entrarPartida = retornoDados.Split(',');
 
-            string idJogador = entrarPartidaDados[0];
-            string senhaJogador = entrarPartidaDados[1].ToString();
+            string idJogador = entrarPartida[0];
+            string senhaJogador = entrarPartida[1].ToString();
 
             lblIdJogador.Text = idJogador;
             lblSenhaJogador.Text = senhaJogador;
@@ -100,10 +101,24 @@ namespace sistema_autonomo
             string idJogadorString = txtIDJogador.Text;
             int idJogador = Convert.ToInt32(idJogadorString);
             string senhaJogador = txtSenhaJogador.Text;
-            string vezJogador = Jogo.Iniciar(idJogador, senhaJogador);
 
-            // mudar status da partidade de A para J
+            string vezJogadorDados = Jogo.Iniciar(idJogador, senhaJogador);
+            string retornoDados = vezJogadorDados.ToString();
+            string[] vezJogador = retornoDados.Split(',');
 
+            string retornoVezJogador = vezJogador[0];
+            lblVezJogador.Text = retornoVezJogador;
+        }
+
+        private void btnExibirCartas_Click(object sender, EventArgs e)
+        {
+            string idJogadorString = txtIDJogador.Text;
+            int idJogador = Convert.ToInt32(idJogadorString);
+            string senhaJogador = txtSenhaJogador.Text;
+
+            string cartaJogador = Jogo.ListarCartas(idJogador, senhaJogador);
+            string retornoCartaJogador = cartaJogador.ToString();
+            lblMinhasCartas.Text = retornoCartaJogador;
         }
     }
 }

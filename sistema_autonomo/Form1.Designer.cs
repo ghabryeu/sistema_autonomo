@@ -59,6 +59,9 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblVezJogador = new System.Windows.Forms.Label();
+            this.btnExibirCartas = new System.Windows.Forms.Button();
+            this.lblMinhasCartas = new System.Windows.Forms.Label();
+            this.lblGrupo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblNomePartida
@@ -148,7 +151,7 @@
             this.lstPartidas.FormattingEnabled = true;
             this.lstPartidas.Location = new System.Drawing.Point(26, 195);
             this.lstPartidas.Name = "lstPartidas";
-            this.lstPartidas.Size = new System.Drawing.Size(255, 95);
+            this.lstPartidas.Size = new System.Drawing.Size(255, 108);
             this.lstPartidas.TabIndex = 11;
             // 
             // lblNomeJogador
@@ -207,10 +210,11 @@
             // lblVersao
             // 
             this.lblVersao.AutoSize = true;
-            this.lblVersao.Location = new System.Drawing.Point(900, 509);
+            this.lblVersao.Location = new System.Drawing.Point(895, 492);
             this.lblVersao.Name = "lblVersao";
-            this.lblVersao.Size = new System.Drawing.Size(0, 13);
+            this.lblVersao.Size = new System.Drawing.Size(40, 13);
             this.lblVersao.TabIndex = 19;
+            this.lblVersao.Text = "Versao";
             // 
             // btnCriarPartida
             // 
@@ -325,11 +329,42 @@
             this.lblVezJogador.TabIndex = 33;
             this.lblVezJogador.Text = "Jogador da Vez";
             // 
+            // btnExibirCartas
+            // 
+            this.btnExibirCartas.Location = new System.Drawing.Point(395, 492);
+            this.btnExibirCartas.Name = "btnExibirCartas";
+            this.btnExibirCartas.Size = new System.Drawing.Size(88, 23);
+            this.btnExibirCartas.TabIndex = 35;
+            this.btnExibirCartas.Text = "Exibir Cartas";
+            this.btnExibirCartas.UseVisualStyleBackColor = true;
+            this.btnExibirCartas.Click += new System.EventHandler(this.btnExibirCartas_Click);
+            // 
+            // lblMinhasCartas
+            // 
+            this.lblMinhasCartas.AutoSize = true;
+            this.lblMinhasCartas.Location = new System.Drawing.Point(497, 497);
+            this.lblMinhasCartas.Name = "lblMinhasCartas";
+            this.lblMinhasCartas.Size = new System.Drawing.Size(74, 13);
+            this.lblMinhasCartas.TabIndex = 36;
+            this.lblMinhasCartas.Text = "Minhas Cartas";
+            // 
+            // lblGrupo
+            // 
+            this.lblGrupo.AutoSize = true;
+            this.lblGrupo.Location = new System.Drawing.Point(855, 509);
+            this.lblGrupo.Name = "lblGrupo";
+            this.lblGrupo.Size = new System.Drawing.Size(80, 13);
+            this.lblGrupo.TabIndex = 37;
+            this.lblGrupo.Text = "Nomo do grupo";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(947, 531);
+            this.Controls.Add(this.lblGrupo);
+            this.Controls.Add(this.lblMinhasCartas);
+            this.Controls.Add(this.btnExibirCartas);
             this.Controls.Add(this.lblVezJogador);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -401,6 +436,9 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblVezJogador;
+        private System.Windows.Forms.Button btnExibirCartas;
+        private System.Windows.Forms.Label lblMinhasCartas;
+        private System.Windows.Forms.Label lblGrupo;
     }
 }
 
