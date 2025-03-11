@@ -109,6 +109,7 @@
             // 
             this.txtNomeGrupo.Location = new System.Drawing.Point(26, 103);
             this.txtNomeGrupo.Name = "txtNomeGrupo";
+            this.txtNomeGrupo.ReadOnly = true;
             this.txtNomeGrupo.Size = new System.Drawing.Size(137, 20);
             this.txtNomeGrupo.TabIndex = 5;
             // 
@@ -351,7 +352,7 @@
             // lblGrupo
             // 
             this.lblGrupo.AutoSize = true;
-            this.lblGrupo.Location = new System.Drawing.Point(855, 509);
+            this.lblGrupo.Location = new System.Drawing.Point(812, 509);
             this.lblGrupo.Name = "lblGrupo";
             this.lblGrupo.Size = new System.Drawing.Size(80, 13);
             this.lblGrupo.TabIndex = 37;

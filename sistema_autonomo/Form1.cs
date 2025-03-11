@@ -15,6 +15,7 @@ namespace sistema_autonomo
     {
         Jogador jogador = new Jogador();
         Partida partida = new Partida();
+        Erro verificarErro = new Erro();
 
         public Form1()
         {
@@ -39,7 +40,7 @@ namespace sistema_autonomo
             string[] partidas = retorno.Split('\n');
 
             lstPartidas.Items.Clear();
-            for(int i = 0; i < partidas.Length - 1; i++)
+            for(int i = 0; i < partidas.Length; i++)
             {
                 lstPartidas.Items.Add(partidas[i]);
             }
@@ -47,7 +48,13 @@ namespace sistema_autonomo
 
         private void btnListarJogadores_Click(object sender, EventArgs e)
         {
-            string partida = lstPartidas.SelectedItem.ToString();
+            string partida = lstPartidas.SelectedItem?.ToString();
+
+            if (!verificarErro.VerificarSelecaoPartida(partida))
+            {
+                return;
+            }
+
             string[] dadosPartida = partida.Split(',');
 
             int idPartida = Convert.ToInt32(dadosPartida[0]);
@@ -68,6 +75,12 @@ namespace sistema_autonomo
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
             partida.nome = txtNomePartida.Text;
+
+            if (!verificarErro.VerificarNome(partida.nome))
+            {
+                return;
+            }
+
             partida.senha = txtSenhaPartidaCriar.Text;
             partida.id = Jogo.CriarPartida(partida.nome, partida.senha, "Juízes de Common Law");
 
@@ -82,6 +95,12 @@ namespace sistema_autonomo
         private void btnEntrarPartida_Click(object sender, EventArgs e)
         {
             jogador.nome = txtNomeJogador.Text;
+
+            if (!verificarErro.VerificarNome(jogador.nome))
+            {
+                return;
+            }
+
             partida.senha = txtSenha.Text;
             partida.id = txtIdPartida.Text;
 
