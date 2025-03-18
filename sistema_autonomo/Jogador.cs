@@ -9,10 +9,33 @@ namespace sistema_autonomo
 {
     class Jogador
     {
-        public int id;
-        public string senha;
-        public string nome;
+        string id;
+        string senha;
+        string nome;
 
+        public string Id
+        { get { return id; }
+          set { id = value; }
+        }
+
+        public string Senha
+        {
+            get { return senha; }
+            set { senha = value; }
+        }
+
+        public string Nome
+        {
+            get { return nome; }
+            set { nome = value; }
+        }
+
+        public Jogador(string id, string senha, string nome)
+        {
+            this.id = id;
+            this.senha = senha;
+            this.nome = nome;
+        }
 
         public string EntrarPartida(string idPartidaString, string senhaPartida)
         {

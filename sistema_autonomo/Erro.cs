@@ -26,6 +26,28 @@ namespace sistema_autonomo
             return true;
         }
 
+        public bool VerificarSenha(string retorno)
+        {
+            if (retorno == "")
+            {
+                MessageBox.Show("Não é possível prosseguir sem uma senha", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        public bool VerificarID(string retorno)
+        {
+            if (retorno == "")
+            {
+                MessageBox.Show("Não é possível prosseguir sem um ID", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
         public bool VerificarSelecaoPartida(string retorno)
         {
             if (retorno == null)

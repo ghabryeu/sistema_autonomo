@@ -13,9 +13,9 @@ namespace sistema_autonomo
 {
     public partial class Form1: Form
     {
-        Jogador jogador = new Jogador();
-        Partida partida = new Partida();
         Erro verificarErro = new Erro();
+        Tabuleiro tabuleiro = new Tabuleiro();
+        Personagem personagem = new Personagem();
 
         public Form1()
         {
@@ -74,17 +74,22 @@ namespace sistema_autonomo
 
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
-            partida.nome = txtNomePartida.Text;
+            // nome e senha da partida
+            Partida partida = new Partida(lblIdPartidaCriada.Text, txtSenhaPartidaCriar.Text, txtNomePartida.Text);
 
-            if (!verificarErro.VerificarNome(partida.nome))
+            if (!verificarErro.VerificarNome(partida.Nome))
             {
                 return;
             }
 
-            partida.senha = txtSenhaPartidaCriar.Text;
-            partida.id = Jogo.CriarPartida(partida.nome, partida.senha, "Juízes de Common Law");
+            if (!verificarErro.VerificarSenha(partida.Senha))
+            {
+                return;
+            }
 
-            string retornoPartida = partida.id.ToString();
+            partida.Id = Jogo.CriarPartida(partida.Nome, partida.Senha, "Juízes de Common Law");
+
+            string retornoPartida = partida.Id.ToString();
             string[] dadosPartida = retornoPartida.Split(',');
             int idPartidaCriada = Convert.ToInt32(dadosPartida[0]);
 
@@ -94,25 +99,37 @@ namespace sistema_autonomo
 
         private void btnEntrarPartida_Click(object sender, EventArgs e)
         {
-            jogador.nome = txtNomeJogador.Text;
+            Partida partida = new Partida(lblIdPartidaCriada.Text, txtSenha.Text, txtNomePartida.Text);
+            Jogador jogador = new Jogador(txtIDJogador.Text, lblSenhaJogador.Text, txtNomeJogador.Text);
+            partida.Id = txtIdPartida.Text;
 
-            if (!verificarErro.VerificarNome(jogador.nome))
+            if (!verificarErro.VerificarNome(jogador.Nome))
             {
                 return;
             }
 
-            partida.senha = txtSenha.Text;
-            partida.id = txtIdPartida.Text;
+            if (!verificarErro.VerificarSenha(partida.Senha))
+            {
+                return;
+            }
 
-            string entrarPartidaDados = jogador.EntrarPartida(partida.id, partida.senha);
+            if (!verificarErro.VerificarID(partida.Id))
+            {
+                return;
+            }
+
+            string entrarPartidaDados = jogador.EntrarPartida(partida.Id, partida.Senha);
             string retornoDados = entrarPartidaDados.ToString();
             string[] entrarPartida = retornoDados.Split(',');
 
             string idJogador = entrarPartida[0];
-            string senhaJogador = entrarPartida[1].ToString();
+            string senhaJogador = entrarPartida[1];
 
             lblIdJogador.Text = idJogador;
             lblSenhaJogador.Text = senhaJogador;
+
+            txtIDJogador.Text = idJogador;
+            txtSenhaJogador.Text = senhaJogador;
         }
 
         private void btnIniciarJogo_Click(object sender, EventArgs e)
@@ -138,6 +155,49 @@ namespace sistema_autonomo
             string cartaJogador = Jogo.ListarCartas(idJogador, senhaJogador);
             string retornoCartaJogador = cartaJogador.ToString();
             lblMinhasCartas.Text = retornoCartaJogador;
+        }
+
+        private void btnVerificarVez_Click(object sender, EventArgs e)
+        {
+            Partida partida = new Partida(lblIdPartidaCriada.Text, txtSenha.Text, txtNomePartida.Text);
+            lblIdPartidaCriada.Text = partida.Id;
+            int idPartida = Convert.ToInt32(partida.Id);
+            string retorno = Jogo.VerificarVez(idPartida);
+
+            retorno = retorno.Replace("\r", "");
+            string[] status = retorno.Split('\n');
+
+            lstVerificarVez.Items.Clear();
+            for (int i = 0; i < status.Length; i++)
+            {
+                lstVerificarVez.Items.Add(status[i]);
+            }
+        }
+
+        private void btnColocarPersonagem_Click(object sender, EventArgs e)
+        {
+            // int jogador, string senha, int setor, string personagem
+            Jogador jogador = new Jogador(lblIdJogador.Text, lblSenhaJogador.Text, txtNomeJogador.Text);
+            int idJogador = Convert.ToInt32(jogador.Id);
+            string senhaJogador = jogador.Senha;
+            txtNomeJogador.Text = jogador.Nome;
+
+            txtSetor.Text = tabuleiro.Setor.ToString();
+            int idSetor = Convert.ToInt32(tabuleiro.Setor);
+
+            txtSetorPersonagem.Text = personagem.Nome;
+            string inicialPersonagem = personagem.Nome;
+
+            string retorno = Jogo.ColocarPersonagem(idJogador, senhaJogador, idSetor, inicialPersonagem);
+            retorno = retorno.Replace("\r", "");
+            string[] status = retorno.Split('\n');
+
+            // informações do jogador da vez
+            lstVerificarVez.Items.Clear();
+            for (int i = 0; i < status.Length; i++)
+            {
+                lstVerificarVez.Items.Add(status[i]);
+            }
         }
     }
 }
