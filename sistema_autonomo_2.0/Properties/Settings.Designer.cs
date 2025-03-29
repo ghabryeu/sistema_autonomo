@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace sistema_autonomo.Properties
+namespace sistema_autonomo_2._0.Properties
 {
 
 

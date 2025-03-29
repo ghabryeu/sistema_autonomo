@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace sistema_autonomo
+namespace sistema_autonomo_2._0
 {
     static class Program
     {
