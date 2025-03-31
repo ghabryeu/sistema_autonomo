@@ -11,9 +11,9 @@ using KingMeServer;
 
 namespace sistema_autonomo_2._0
 {
-    public partial class Form1: Form
+    public partial class btnTabuleiro: Form
     {
-        public Form1()
+        public btnTabuleiro()
         {
             InitializeComponent();
 
@@ -117,5 +117,53 @@ namespace sistema_autonomo_2._0
 
             dgvVerificarVez.DataSource = lista;
         }
+
+        private void btnColocarPersonagem_Click(object sender, EventArgs e)
+        {
+            string idJogador = txtIdJogador.Text;
+            int id = Convert.ToInt32(idJogador);
+
+            string senhaJogador = txtSenhaJogador.Text;
+
+            string setorStr = txtSetor.Text;
+            int setor = Convert.ToInt32(setorStr);
+
+            string personagem = txtPersonagem.Text;
+
+
+            var resultado = Jogador.ColocarPersonagem(id, senhaJogador, setor, personagem);
+
+            Tabuleiro.AdicionarPersonagem(setor, personagem);
+
+            dgvVerificarVez.DataSource = Tabuleiro.ObterEstadoTabuleiro();
+        }
+
+        private void btnTabuleiroForm_Click(object sender, EventArgs e)
+        {
+            TabuleiroForm t = new TabuleiroForm();
+            t.ShowDialog();
+        }
+
+        private void btnEstadoTabuleiro_Click(object sender, EventArgs e)
+        {
+            dgvVerificarVez.DataSource = Tabuleiro.ObterEstadoTabuleiro();
+        }
+
+        private void btnPromoverPersonagem_Click(object sender, EventArgs e)
+        {
+            string idJogador = txtIdJogador.Text;
+            int id = Convert.ToInt32(idJogador);
+
+            string senhaJogador = txtSenhaJogador.Text;
+
+            string personagem = txtPersonagem.Text;
+
+            Jogador.PromoverPersonagem(id, senhaJogador, personagem);
+
+            dgvVerificarVez.DataSource = null;
+            dgvVerificarVez.DataSource = Tabuleiro.ObterEstadoTabuleiro();
+
+        }
+
     }
 }

@@ -11,7 +11,6 @@ namespace sistema_autonomo_2._0
     class Partida
     {
         int id;
-        string senha;
         string nome;
         DateTime data;
         char status;
@@ -20,12 +19,6 @@ namespace sistema_autonomo_2._0
         {
             get { return id; }
             set { id = value; }
-        }
-
-        public string Senha
-        {
-            //get { return senha; }
-            set { senha = value; }
         }
 
         public string Nome
@@ -148,7 +141,6 @@ namespace sistema_autonomo_2._0
 
             return (idJogador, status, rodada, faseAtual);
         }
-
 
     }
 }

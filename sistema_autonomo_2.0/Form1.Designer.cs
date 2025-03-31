@@ -1,6 +1,6 @@
 ﻿namespace sistema_autonomo_2._0
 {
-    partial class Form1
+    partial class btnTabuleiro
     {
         /// <summary>
         /// Variável de designer necessária.
@@ -62,15 +62,18 @@
             this.btnIniciarJogo = new System.Windows.Forms.Button();
             this.btnExibirCartas = new System.Windows.Forms.Button();
             this.lblCartas = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.btnColocarPersonagem = new System.Windows.Forms.Button();
+            this.txtSetor = new System.Windows.Forms.TextBox();
+            this.txtPersonagem = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.btnPromoverPersonagem = new System.Windows.Forms.Button();
+            this.btnEstadoTabuleiro = new System.Windows.Forms.Button();
+            this.btnTabuleiroForm = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarPartidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarJogadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVerificarVez)).BeginInit();
@@ -375,28 +378,29 @@
             this.lblCartas.TabIndex = 34;
             this.lblCartas.Text = "Cartas";
             // 
-            // button1
+            // btnColocarPersonagem
             // 
-            this.button1.Location = new System.Drawing.Point(698, 25);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(79, 61);
-            this.button1.TabIndex = 35;
-            this.button1.Text = "Colocar Personagem";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnColocarPersonagem.Location = new System.Drawing.Point(698, 25);
+            this.btnColocarPersonagem.Name = "btnColocarPersonagem";
+            this.btnColocarPersonagem.Size = new System.Drawing.Size(79, 61);
+            this.btnColocarPersonagem.TabIndex = 35;
+            this.btnColocarPersonagem.Text = "Colocar Personagem";
+            this.btnColocarPersonagem.UseVisualStyleBackColor = true;
+            this.btnColocarPersonagem.Click += new System.EventHandler(this.btnColocarPersonagem_Click);
             // 
-            // textBox1
+            // txtSetor
             // 
-            this.textBox1.Location = new System.Drawing.Point(581, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 36;
+            this.txtSetor.Location = new System.Drawing.Point(581, 25);
+            this.txtSetor.Name = "txtSetor";
+            this.txtSetor.Size = new System.Drawing.Size(100, 20);
+            this.txtSetor.TabIndex = 36;
             // 
-            // textBox2
+            // txtPersonagem
             // 
-            this.textBox2.Location = new System.Drawing.Point(581, 66);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 37;
+            this.txtPersonagem.Location = new System.Drawing.Point(581, 66);
+            this.txtPersonagem.Name = "txtPersonagem";
+            this.txtPersonagem.Size = new System.Drawing.Size(100, 20);
+            this.txtPersonagem.TabIndex = 37;
             // 
             // label7
             // 
@@ -419,7 +423,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(802, 9);
+            this.label9.Location = new System.Drawing.Point(806, 102);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(32, 13);
             this.label9.TabIndex = 40;
@@ -436,7 +440,7 @@
             "2,Mercadores",
             "1,Artesãos",
             "0,Plebeus"});
-            this.listBox1.Location = new System.Drawing.Point(805, 28);
+            this.listBox1.Location = new System.Drawing.Point(809, 121);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(120, 108);
             this.listBox1.TabIndex = 41;
@@ -458,7 +462,7 @@
             "Quintas",
             "Ranulfo",
             "Toshio"});
-            this.listBox2.Location = new System.Drawing.Point(805, 167);
+            this.listBox2.Location = new System.Drawing.Point(809, 260);
             this.listBox2.Name = "listBox2";
             this.listBox2.Size = new System.Drawing.Size(120, 186);
             this.listBox2.TabIndex = 42;
@@ -466,26 +470,59 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(802, 151);
+            this.label10.Location = new System.Drawing.Point(806, 244);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(66, 13);
             this.label10.TabIndex = 43;
             this.label10.Text = "Personagem";
             // 
-            // Form1
+            // btnPromoverPersonagem
+            // 
+            this.btnPromoverPersonagem.Location = new System.Drawing.Point(581, 104);
+            this.btnPromoverPersonagem.Name = "btnPromoverPersonagem";
+            this.btnPromoverPersonagem.Size = new System.Drawing.Size(75, 32);
+            this.btnPromoverPersonagem.TabIndex = 44;
+            this.btnPromoverPersonagem.Text = "Promover";
+            this.btnPromoverPersonagem.UseVisualStyleBackColor = true;
+            this.btnPromoverPersonagem.Click += new System.EventHandler(this.btnPromoverPersonagem_Click);
+            // 
+            // btnEstadoTabuleiro
+            // 
+            this.btnEstadoTabuleiro.Location = new System.Drawing.Point(698, 104);
+            this.btnEstadoTabuleiro.Name = "btnEstadoTabuleiro";
+            this.btnEstadoTabuleiro.Size = new System.Drawing.Size(79, 50);
+            this.btnEstadoTabuleiro.TabIndex = 45;
+            this.btnEstadoTabuleiro.Text = "Estado do Tabuleiro";
+            this.btnEstadoTabuleiro.UseVisualStyleBackColor = true;
+            this.btnEstadoTabuleiro.Click += new System.EventHandler(this.btnEstadoTabuleiro_Click);
+            // 
+            // btnTabuleiroForm
+            // 
+            this.btnTabuleiroForm.Location = new System.Drawing.Point(809, 25);
+            this.btnTabuleiroForm.Name = "btnTabuleiroForm";
+            this.btnTabuleiroForm.Size = new System.Drawing.Size(79, 61);
+            this.btnTabuleiroForm.TabIndex = 46;
+            this.btnTabuleiroForm.Text = "Tabuleiro";
+            this.btnTabuleiroForm.UseVisualStyleBackColor = true;
+            this.btnTabuleiroForm.Click += new System.EventHandler(this.btnTabuleiroForm_Click);
+            // 
+            // btnTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 498);
+            this.Controls.Add(this.btnTabuleiroForm);
+            this.Controls.Add(this.btnEstadoTabuleiro);
+            this.Controls.Add(this.btnPromoverPersonagem);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.listBox2);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.txtPersonagem);
+            this.Controls.Add(this.txtSetor);
+            this.Controls.Add(this.btnColocarPersonagem);
             this.Controls.Add(this.lblCartas);
             this.Controls.Add(this.btnExibirCartas);
             this.Controls.Add(this.btnIniciarJogo);
@@ -520,7 +557,7 @@
             this.Controls.Add(this.txtSenhaPartida);
             this.Controls.Add(this.txtNomeGrupo);
             this.Controls.Add(this.txtNomePartida);
-            this.Name = "Form1";
+            this.Name = "btnTabuleiro";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarPartidas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarJogadores)).EndInit();
@@ -566,15 +603,18 @@
         private System.Windows.Forms.Button btnIniciarJogo;
         private System.Windows.Forms.Button btnExibirCartas;
         private System.Windows.Forms.Label lblCartas;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Button btnColocarPersonagem;
+        private System.Windows.Forms.TextBox txtSetor;
+        private System.Windows.Forms.TextBox txtPersonagem;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ListBox listBox1;
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button btnPromoverPersonagem;
+        private System.Windows.Forms.Button btnEstadoTabuleiro;
+        private System.Windows.Forms.Button btnTabuleiroForm;
     }
 }
 

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using KingMeServer;
+using static System.Windows.Forms.LinkLabel;
 
 namespace sistema_autonomo_2._0
 {
@@ -64,21 +66,50 @@ namespace sistema_autonomo_2._0
             return (idJogador, senhaJogador);
         }
 
-        //public static string ColocarPersonagem(int idJogador, string senhaJogador, int setor, string personagem)
-        //{
-        //    string retorno = Jogo.ColocarPersonagem(idJogador, senhaJogador, setor, personagem);
-        //    retorno = retorno.Replace("\r", "");
-        //    string[] status = retorno.Split('\n');
+        public static (int setor, string personagem) ColocarPersonagem(int idJogador, string senhaJogador, int setor, string personagem)
+        {
+            string retorno = Jogo.ColocarPersonagem(idJogador, senhaJogador, setor, personagem);
+            retorno = retorno.Replace("\r", "");
+            string[] status = retorno.Split('\n');
 
-        //    for(int i = 0; i < status.Length; i++)
-        //    {
-        //        string[] dados = status[i].Split(',');
-        //        if(dados.Length > 2)
-        //        {
-        //            // informações do tabuleiro
-        //            // criar classe tabuleiro
-        //        }
-        //    }
-        //}
+            for (int i = 0; i < status.Length; i++)
+            {
+                string[] dados = status[i].Split(',');
+                if (dados.Length > 2)
+                {
+                    setor = Convert.ToInt32(dados[0]);
+                    personagem = dados[1];
+                }
+            }
+
+            return (setor, personagem);
+        }
+
+        public static (int setor, string personagem) PromoverPersonagem(int idJogador, string senhaJogador, string personagem)
+        {
+            string retorno = Jogo.Promover(idJogador, senhaJogador, personagem);
+            retorno = retorno.Replace("\r", "");
+            string[] status = retorno.Split('\n');
+
+            int novoSetor = -1;
+
+            for (int i = 0; i < status.Length; i++)
+            {
+                string[] dados = status[i].Split(',');
+                if (dados.Length > 2)
+                {
+                    novoSetor = Convert.ToInt32(dados[0]);
+
+                    var personagemAtual = Tabuleiro.BuscarPersonagem(personagem);
+
+                    if (personagemAtual != null)
+                    {
+                        personagemAtual.Setor = novoSetor;  // Apenas altera o setor
+                    }
+                }
+            }
+
+            return (novoSetor, personagem);
+        }
     }
 }
