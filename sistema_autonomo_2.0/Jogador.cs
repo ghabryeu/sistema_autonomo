@@ -75,41 +75,15 @@ namespace sistema_autonomo_2._0
             for (int i = 0; i < status.Length; i++)
             {
                 string[] dados = status[i].Split(',');
-                if (dados.Length > 2)
+
+                if (dados.Length == 2 && int.TryParse(dados[0], out int novoSetor))
                 {
-                    setor = Convert.ToInt32(dados[0]);
+                    setor = novoSetor;
                     personagem = dados[1];
                 }
             }
 
             return (setor, personagem);
-        }
-
-        public static (int setor, string personagem) PromoverPersonagem(int idJogador, string senhaJogador, string personagem)
-        {
-            string retorno = Jogo.Promover(idJogador, senhaJogador, personagem);
-            retorno = retorno.Replace("\r", "");
-            string[] status = retorno.Split('\n');
-
-            int novoSetor = -1;
-
-            for (int i = 0; i < status.Length; i++)
-            {
-                string[] dados = status[i].Split(',');
-                if (dados.Length > 2)
-                {
-                    novoSetor = Convert.ToInt32(dados[0]);
-
-                    var personagemAtual = Tabuleiro.BuscarPersonagem(personagem);
-
-                    if (personagemAtual != null)
-                    {
-                        personagemAtual.Setor = novoSetor;  // Apenas altera o setor
-                    }
-                }
-            }
-
-            return (novoSetor, personagem);
         }
     }
 }

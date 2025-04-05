@@ -130,10 +130,9 @@ namespace sistema_autonomo_2._0
 
             string personagem = txtPersonagem.Text;
 
-
             var resultado = Jogador.ColocarPersonagem(id, senhaJogador, setor, personagem);
 
-            Tabuleiro.AdicionarPersonagem(setor, personagem);
+            Tabuleiro.AdicionarPersonagem(resultado.setor, resultado.personagem);
 
             dgvVerificarVez.DataSource = Tabuleiro.ObterEstadoTabuleiro();
         }
@@ -149,21 +148,7 @@ namespace sistema_autonomo_2._0
             dgvVerificarVez.DataSource = Tabuleiro.ObterEstadoTabuleiro();
         }
 
-        private void btnPromoverPersonagem_Click(object sender, EventArgs e)
-        {
-            string idJogador = txtIdJogador.Text;
-            int id = Convert.ToInt32(idJogador);
-
-            string senhaJogador = txtSenhaJogador.Text;
-
-            string personagem = txtPersonagem.Text;
-
-            Jogador.PromoverPersonagem(id, senhaJogador, personagem);
-
-            dgvVerificarVez.DataSource = null;
-            dgvVerificarVez.DataSource = Tabuleiro.ObterEstadoTabuleiro();
-
-        }
+        
 
     }
 }

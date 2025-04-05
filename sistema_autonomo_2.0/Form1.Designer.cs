@@ -74,6 +74,7 @@
             this.btnPromoverPersonagem = new System.Windows.Forms.Button();
             this.btnEstadoTabuleiro = new System.Windows.Forms.Button();
             this.btnTabuleiroForm = new System.Windows.Forms.Button();
+            this.listBox3 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarPartidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarJogadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVerificarVez)).BeginInit();
@@ -484,7 +485,6 @@
             this.btnPromoverPersonagem.TabIndex = 44;
             this.btnPromoverPersonagem.Text = "Promover";
             this.btnPromoverPersonagem.UseVisualStyleBackColor = true;
-            this.btnPromoverPersonagem.Click += new System.EventHandler(this.btnPromoverPersonagem_Click);
             // 
             // btnEstadoTabuleiro
             // 
@@ -506,11 +506,20 @@
             this.btnTabuleiroForm.UseVisualStyleBackColor = true;
             this.btnTabuleiroForm.Click += new System.EventHandler(this.btnTabuleiroForm_Click);
             // 
+            // listBox3
+            // 
+            this.listBox3.FormattingEnabled = true;
+            this.listBox3.Location = new System.Drawing.Point(581, 190);
+            this.listBox3.Name = "listBox3";
+            this.listBox3.Size = new System.Drawing.Size(124, 82);
+            this.listBox3.TabIndex = 47;
+            // 
             // btnTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 498);
+            this.Controls.Add(this.listBox3);
             this.Controls.Add(this.btnTabuleiroForm);
             this.Controls.Add(this.btnEstadoTabuleiro);
             this.Controls.Add(this.btnPromoverPersonagem);
@@ -615,6 +624,7 @@
         private System.Windows.Forms.Button btnPromoverPersonagem;
         private System.Windows.Forms.Button btnEstadoTabuleiro;
         private System.Windows.Forms.Button btnTabuleiroForm;
+        private System.Windows.Forms.ListBox listBox3;
     }
 }
 
