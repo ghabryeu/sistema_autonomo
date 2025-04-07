@@ -66,24 +66,29 @@ namespace sistema_autonomo_2._0
             return (idJogador, senhaJogador);
         }
 
-        public static (int setor, string personagem) ColocarPersonagem(int idJogador, string senhaJogador, int setor, string personagem)
+        public static List<Tabuleiro> ColocarPersonagem(int idJogador, string senhaJogador, int setor, string personagem)
         {
             string retorno = Jogo.ColocarPersonagem(idJogador, senhaJogador, setor, personagem);
             retorno = retorno.Replace("\r", "");
+            retorno = retorno.Substring(0, retorno.Length - 1);
             string[] status = retorno.Split('\n');
+            List<Tabuleiro> setorPersonagem = new List<Tabuleiro>();
+
 
             for (int i = 0; i < status.Length; i++)
             {
                 string[] dados = status[i].Split(',');
 
-                if (dados.Length == 2 && int.TryParse(dados[0], out int novoSetor))
-                {
-                    setor = novoSetor;
-                    personagem = dados[1];
-                }
+                Tabuleiro t = new Tabuleiro();
+
+                int.TryParse(dados[0], out int novoSetor);
+                t.Setor = novoSetor;
+                t.Personagem = dados[1];
+
+                setorPersonagem.Add(t);
             }
 
-            return (setor, personagem);
+            return setorPersonagem;
         }
     }
 }

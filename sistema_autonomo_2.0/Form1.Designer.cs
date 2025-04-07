@@ -72,9 +72,7 @@
             this.listBox2 = new System.Windows.Forms.ListBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnPromoverPersonagem = new System.Windows.Forms.Button();
-            this.btnEstadoTabuleiro = new System.Windows.Forms.Button();
             this.btnTabuleiroForm = new System.Windows.Forms.Button();
-            this.listBox3 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarPartidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarJogadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVerificarVez)).BeginInit();
@@ -486,16 +484,6 @@
             this.btnPromoverPersonagem.Text = "Promover";
             this.btnPromoverPersonagem.UseVisualStyleBackColor = true;
             // 
-            // btnEstadoTabuleiro
-            // 
-            this.btnEstadoTabuleiro.Location = new System.Drawing.Point(698, 104);
-            this.btnEstadoTabuleiro.Name = "btnEstadoTabuleiro";
-            this.btnEstadoTabuleiro.Size = new System.Drawing.Size(79, 50);
-            this.btnEstadoTabuleiro.TabIndex = 45;
-            this.btnEstadoTabuleiro.Text = "Estado do Tabuleiro";
-            this.btnEstadoTabuleiro.UseVisualStyleBackColor = true;
-            this.btnEstadoTabuleiro.Click += new System.EventHandler(this.btnEstadoTabuleiro_Click);
-            // 
             // btnTabuleiroForm
             // 
             this.btnTabuleiroForm.Location = new System.Drawing.Point(809, 25);
@@ -506,22 +494,12 @@
             this.btnTabuleiroForm.UseVisualStyleBackColor = true;
             this.btnTabuleiroForm.Click += new System.EventHandler(this.btnTabuleiroForm_Click);
             // 
-            // listBox3
-            // 
-            this.listBox3.FormattingEnabled = true;
-            this.listBox3.Location = new System.Drawing.Point(581, 190);
-            this.listBox3.Name = "listBox3";
-            this.listBox3.Size = new System.Drawing.Size(124, 82);
-            this.listBox3.TabIndex = 47;
-            // 
             // btnTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 498);
-            this.Controls.Add(this.listBox3);
             this.Controls.Add(this.btnTabuleiroForm);
-            this.Controls.Add(this.btnEstadoTabuleiro);
             this.Controls.Add(this.btnPromoverPersonagem);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.listBox2);
@@ -622,9 +600,7 @@
         private System.Windows.Forms.ListBox listBox2;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnPromoverPersonagem;
-        private System.Windows.Forms.Button btnEstadoTabuleiro;
         private System.Windows.Forms.Button btnTabuleiroForm;
-        private System.Windows.Forms.ListBox listBox3;
     }
 }
 

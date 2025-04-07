@@ -13,6 +13,8 @@ namespace sistema_autonomo_2._0
 {
     public partial class btnTabuleiro: Form
     {
+        TabuleiroForm tabuleiro;
+
         public btnTabuleiro()
         {
             InitializeComponent();
@@ -130,11 +132,17 @@ namespace sistema_autonomo_2._0
 
             string personagem = txtPersonagem.Text;
 
-            var resultado = Jogador.ColocarPersonagem(id, senhaJogador, setor, personagem);
+            dgvVerificarVez.DataSource = Jogador.ColocarPersonagem(id, senhaJogador, setor, personagem);
 
-            Tabuleiro.AdicionarPersonagem(resultado.setor, resultado.personagem);
+            // abre segundo form
+            if (tabuleiro == null || tabuleiro.IsDisposed)
+            {
+                tabuleiro = new TabuleiroForm();
+                tabuleiro.Show();
+            }
 
-            dgvVerificarVez.DataSource = Tabuleiro.ObterEstadoTabuleiro();
+            tabuleiro.AdicionarPersonagem(setor, personagem);
+
         }
 
         private void btnTabuleiroForm_Click(object sender, EventArgs e)
@@ -142,13 +150,7 @@ namespace sistema_autonomo_2._0
             TabuleiroForm t = new TabuleiroForm();
             t.ShowDialog();
         }
-
-        private void btnEstadoTabuleiro_Click(object sender, EventArgs e)
-        {
-            dgvVerificarVez.DataSource = Tabuleiro.ObterEstadoTabuleiro();
-        }
-
-        
+ 
 
     }
 }

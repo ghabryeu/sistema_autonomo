@@ -26,3 +26,17 @@ C:\Users\gabriel\Downloads\sistema_autonomo-main\sistema_autonomo-main\sistema_a
 C:\Users\gabriel\Downloads\sistema_autonomo-main\sistema_autonomo-main\sistema_autonomo_2.0\obj\Debug\sistema_.3515437E.Up2Date
 C:\Users\gabriel\Downloads\sistema_autonomo-main\sistema_autonomo-main\sistema_autonomo_2.0\obj\Debug\sistema_autonomo_2.0.exe
 C:\Users\gabriel\Downloads\sistema_autonomo-main\sistema_autonomo-main\sistema_autonomo_2.0\obj\Debug\sistema_autonomo_2.0.pdb
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\bin\Debug\sistema_autonomo_2.0.exe.config
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\bin\Debug\sistema_autonomo_2.0.exe
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\bin\Debug\sistema_autonomo_2.0.pdb
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\bin\Debug\KingMeServer.dll
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\bin\Debug\KingMeServer.xml
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\obj\Debug\sistema_autonomo_2.0.csproj.AssemblyReference.cache
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\obj\Debug\sistema_autonomo_2._0.btnTabuleiro.resources
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\obj\Debug\sistema_autonomo_2._0.Properties.Resources.resources
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\obj\Debug\sistema_autonomo_2._0.TabuleiroForm.resources
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\obj\Debug\sistema_autonomo_2.0.csproj.GenerateResource.cache
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\obj\Debug\sistema_autonomo_2.0.csproj.CoreCompileInputs.cache
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\obj\Debug\sistema_.3515437E.Up2Date
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\obj\Debug\sistema_autonomo_2.0.exe
+C:\Users\gabriel\source\repos\sistema_autonomo\sistema_autonomo_2.0\obj\Debug\sistema_autonomo_2.0.pdb
