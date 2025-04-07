@@ -142,5 +142,28 @@ namespace sistema_autonomo_2._0
             return (idJogador, status, rodada, faseAtual);
         }
 
+        public static List<Personagem> ExibirUltimaVotacao(int idPartida)
+        {
+            string retorno = Jogo.ExibirUltimaVotacao(idPartida);
+            retorno = retorno.Replace("\r", "");
+            retorno = retorno.Substring(0, retorno.Length - 1);
+            string[] status = retorno.Split('\n');
+            List<Personagem> votoPersonagem = new List<Personagem>();
+
+            for (int i = 0; i < status.Length; i++)
+            {
+                string[] dados = status[i].Split(',');
+
+                Personagem p = new Personagem();
+
+                p.Inicial = dados[0];
+                p.ID = Convert.ToInt32(dados[1]);
+                p.Voto = dados[2];
+
+                votoPersonagem.Add(p);
+            }
+
+            return votoPersonagem;
+        }
     }
 }

@@ -73,6 +73,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.btnPromoverPersonagem = new System.Windows.Forms.Button();
             this.btnTabuleiroForm = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtVotar = new System.Windows.Forms.TextBox();
+            this.btnVotar = new System.Windows.Forms.Button();
+            this.btnExibirVotacao = new System.Windows.Forms.Button();
+            this.btnVerificarVezTabuleiro = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarPartidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarJogadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVerificarVez)).BeginInit();
@@ -483,6 +488,7 @@
             this.btnPromoverPersonagem.TabIndex = 44;
             this.btnPromoverPersonagem.Text = "Promover";
             this.btnPromoverPersonagem.UseVisualStyleBackColor = true;
+            this.btnPromoverPersonagem.Click += new System.EventHandler(this.btnPromoverPersonagem_Click);
             // 
             // btnTabuleiroForm
             // 
@@ -494,11 +500,61 @@
             this.btnTabuleiroForm.UseVisualStyleBackColor = true;
             this.btnTabuleiroForm.Click += new System.EventHandler(this.btnTabuleiroForm_Click);
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(578, 164);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(61, 13);
+            this.label11.TabIndex = 47;
+            this.label11.Text = "Votar (S/N)";
+            // 
+            // txtVotar
+            // 
+            this.txtVotar.Location = new System.Drawing.Point(581, 180);
+            this.txtVotar.Name = "txtVotar";
+            this.txtVotar.Size = new System.Drawing.Size(75, 20);
+            this.txtVotar.TabIndex = 48;
+            // 
+            // btnVotar
+            // 
+            this.btnVotar.Location = new System.Drawing.Point(677, 171);
+            this.btnVotar.Name = "btnVotar";
+            this.btnVotar.Size = new System.Drawing.Size(65, 29);
+            this.btnVotar.TabIndex = 49;
+            this.btnVotar.Text = "Votar";
+            this.btnVotar.UseVisualStyleBackColor = true;
+            this.btnVotar.Click += new System.EventHandler(this.btnVotar_Click);
+            // 
+            // btnExibirVotacao
+            // 
+            this.btnExibirVotacao.Location = new System.Drawing.Point(581, 218);
+            this.btnExibirVotacao.Name = "btnExibirVotacao";
+            this.btnExibirVotacao.Size = new System.Drawing.Size(161, 39);
+            this.btnExibirVotacao.TabIndex = 50;
+            this.btnExibirVotacao.Text = "Exibir Última Votação";
+            this.btnExibirVotacao.UseVisualStyleBackColor = true;
+            this.btnExibirVotacao.Click += new System.EventHandler(this.btnExibirVotacao_Click);
+            // 
+            // btnVerificarVezTabuleiro
+            // 
+            this.btnVerificarVezTabuleiro.Location = new System.Drawing.Point(581, 272);
+            this.btnVerificarVezTabuleiro.Name = "btnVerificarVezTabuleiro";
+            this.btnVerificarVezTabuleiro.Size = new System.Drawing.Size(161, 39);
+            this.btnVerificarVezTabuleiro.TabIndex = 51;
+            this.btnVerificarVezTabuleiro.Text = "Verificar Vez +  Tabuleiro";
+            this.btnVerificarVezTabuleiro.UseVisualStyleBackColor = true;
+            // 
             // btnTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 498);
+            this.Controls.Add(this.btnVerificarVezTabuleiro);
+            this.Controls.Add(this.btnExibirVotacao);
+            this.Controls.Add(this.btnVotar);
+            this.Controls.Add(this.txtVotar);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.btnTabuleiroForm);
             this.Controls.Add(this.btnPromoverPersonagem);
             this.Controls.Add(this.label10);
@@ -545,7 +601,7 @@
             this.Controls.Add(this.txtNomeGrupo);
             this.Controls.Add(this.txtNomePartida);
             this.Name = "btnTabuleiro";
-            this.Text = "Form1";
+            this.Text = "King Me!";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarPartidas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarJogadores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVerificarVez)).EndInit();
@@ -601,6 +657,11 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnPromoverPersonagem;
         private System.Windows.Forms.Button btnTabuleiroForm;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtVotar;
+        private System.Windows.Forms.Button btnVotar;
+        private System.Windows.Forms.Button btnExibirVotacao;
+        private System.Windows.Forms.Button btnVerificarVezTabuleiro;
     }
 }
 

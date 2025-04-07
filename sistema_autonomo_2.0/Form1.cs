@@ -13,6 +13,7 @@ namespace sistema_autonomo_2._0
 {
     public partial class btnTabuleiro: Form
     {
+        VerificarErro verificarErro = new VerificarErro();
         TabuleiroForm tabuleiro;
 
         public btnTabuleiro()
@@ -32,6 +33,11 @@ namespace sistema_autonomo_2._0
         {
             string idPartida = txtIdPartida.Text; // informação do forms
             int id = Convert.ToInt32(idPartida); // convertendo p int
+
+            //if (!verificarErro.VerificarIdPartida(id))
+            //{
+            //    return;
+            //}
 
             dgvListarJogadores.DataSource = Partida.ListarJogador(id);
         }
@@ -141,16 +147,54 @@ namespace sistema_autonomo_2._0
                 tabuleiro.Show();
             }
 
+            // adiciona peças
             tabuleiro.AdicionarPersonagem(setor, personagem);
-
         }
 
         private void btnTabuleiroForm_Click(object sender, EventArgs e)
         {
-            TabuleiroForm t = new TabuleiroForm();
-            t.ShowDialog();
+            if (tabuleiro != null && !tabuleiro.IsDisposed)
+            {
+                tabuleiro.Show(); 
+                tabuleiro.BringToFront();
+            }
+            else
+            {
+                tabuleiro = new TabuleiroForm();
+                tabuleiro.Show();
+            }
         }
- 
 
+        private void btnPromoverPersonagem_Click(object sender, EventArgs e)
+        {
+            string idJogador = txtIdJogador.Text;
+            int id = Convert.ToInt32(idJogador);
+
+            string senhaJogador = txtSenhaJogador.Text;
+
+            string personagem = txtPersonagem.Text;
+
+            dgvVerificarVez.DataSource = Jogador.PromoverPersonagem(id, senhaJogador, personagem);
+        }
+
+        private void btnVotar_Click(object sender, EventArgs e)
+        {
+            string idJogador = txtIdJogador.Text;
+            int id = Convert.ToInt32(idJogador);
+
+            string senhaJogador = txtSenhaJogador.Text;
+
+            string voto = txtVotar.Text;
+
+            Jogo.Votar(id, senhaJogador, voto);
+        }
+
+        private void btnExibirVotacao_Click(object sender, EventArgs e)
+        {
+            string idPartida = txtIdPartida.Text;
+            int id = Convert.ToInt32(idPartida);
+
+            dgvVerificarVez.DataSource = Partida.ExibirUltimaVotacao(id);
+        }
     }
 }

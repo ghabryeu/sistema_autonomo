@@ -8,12 +8,26 @@ namespace sistema_autonomo_2._0
 {
     class Personagem
     {
-        string nome;
+        string personagem;
+        int id;
+        string voto;
 
-        public string Nome
+        public string Inicial
         {
-            get { return nome; }
-            set { nome = value; }
+            get { return personagem; }
+            set { personagem = value; }
+        }
+
+        public int ID
+        {
+            get { return id; }
+            set { id = value; }
+        }
+
+        public string Voto
+        {
+            get { return voto; }
+            set { voto = value; }
         }
 
     }

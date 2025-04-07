@@ -12,11 +12,12 @@ namespace sistema_autonomo_2._0
 {
     public partial class TabuleiroForm: Form
     {
-        Panel pnlPersonagem = null;
+        public Panel pnlSetor = null;
 
         public TabuleiroForm()
         {
             InitializeComponent();
+            this.FormClosing += HideTabuleiro; // esconde formulário em vez de fechar
         }
 
         public void AdicionarPersonagem(int setor, string personagem)
@@ -28,11 +29,16 @@ namespace sistema_autonomo_2._0
             //pnlA.Controls.Add(pnlPersonagem);
 
             Panel pnlSetor = null;
+            //setor = 0;
 
             if (personagem == "a" || personagem == "A")
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -53,6 +59,7 @@ namespace sistema_autonomo_2._0
 
                 if(pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor; // usar caso precise de outros métodos
                     pnlSetor.Controls.Add(pnlA);
                     pnlA.Location = new Point(3, 6); 
                     pnlA.Visible = true;
@@ -64,6 +71,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -84,6 +95,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlB);
                     pnlB.Location = new Point(49, 6);
                     pnlB.Visible = true;
@@ -95,6 +107,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -115,6 +131,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlC);
                     pnlC.Location = new Point(95, 6);
                     pnlC.Visible = true;
@@ -126,6 +143,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -146,6 +167,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlD);
                     pnlD.Location = new Point(141, 6);
                     pnlD.Visible = true;
@@ -157,6 +179,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -177,6 +203,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlE);
                     pnlE.Location = new Point(187, 6);
                     pnlE.Visible = true;
@@ -188,6 +215,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -208,6 +239,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlG);
                     pnlG.Location = new Point(233, 6);
                     pnlG.Visible = true;
@@ -219,6 +251,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -239,6 +275,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlH);
                     pnlH.Location = new Point(279, 6);
                     pnlH.Visible = true;
@@ -250,6 +287,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -270,6 +311,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlK);
                     pnlK.Location = new Point(325, 6);
                     pnlK.Visible = true;
@@ -281,6 +323,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -301,6 +347,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlL);
                     pnlL.Location = new Point(371, 6);
                     pnlL.Visible = true;
@@ -312,6 +359,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -332,6 +383,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlM);
                     pnlM.Location = new Point(417, 6);
                     pnlM.Visible = true;
@@ -343,6 +395,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -363,6 +419,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlQ);
                     pnlQ.Location = new Point(463, 6);
                     pnlQ.Visible = true;
@@ -374,6 +431,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -394,6 +455,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlR);
                     pnlR.Location = new Point(509, 6);
                     pnlR.Visible = true;
@@ -405,6 +467,10 @@ namespace sistema_autonomo_2._0
             {
                 switch (setor)
                 {
+                    case 0:
+                        pnlSetor = pnlPlebeus;
+                        break;
+
                     case 1:
                         pnlSetor = pnlArtesaos;
                         break;
@@ -425,6 +491,7 @@ namespace sistema_autonomo_2._0
 
                 if (pnlSetor != null)
                 {
+                    this.pnlSetor = pnlSetor;
                     pnlSetor.Controls.Add(pnlT);
                     pnlT.Location = new Point(555, 6);
                     pnlT.Visible = true;
@@ -432,6 +499,12 @@ namespace sistema_autonomo_2._0
 
             }
 
+        }
+
+        void HideTabuleiro(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
         }
 
     }

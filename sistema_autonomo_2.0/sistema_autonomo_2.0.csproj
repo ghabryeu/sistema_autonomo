@@ -67,6 +67,7 @@
     <Compile Include="TabuleiroForm.Designer.cs">
       <DependentUpon>TabuleiroForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="VerificarErro.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
