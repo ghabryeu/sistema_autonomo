@@ -16,6 +16,7 @@ namespace sistema_autonomo_2._0
         VerificarErro verificarErro = new VerificarErro();
         TabuleiroForm tabuleiro;
 
+
         public btnTabuleiro()
         {
             InitializeComponent();
@@ -26,7 +27,7 @@ namespace sistema_autonomo_2._0
 
         private void btnListarPartidas_Click(object sender, EventArgs e)
         {
-            dgvListarPartidas.DataSource = Partida.ListarPartida();
+            dgvListarPartidas.DataSource = Lobby.ListarPartida();
         }
 
         private void btnListarJogadores_Click(object sender, EventArgs e)
@@ -39,7 +40,7 @@ namespace sistema_autonomo_2._0
             //    return;
             //}
 
-            dgvListarJogadores.DataSource = Partida.ListarJogador(id);
+            dgvListarJogadores.DataSource = Lobby.ListarJogador(id);
         }
 
         private void btnCriarPartida_Click(object sender, EventArgs e)
@@ -49,7 +50,7 @@ namespace sistema_autonomo_2._0
             string senha = txtSenhaPartida.Text;
             string nomeGrupo = "Juízes de Common Law";
 
-            int idPartida = Partida.CriarPartida(nomePartida, senha, nomeGrupo);
+            int idPartida = Lobby.CriarPartida(nomePartida, senha, nomeGrupo);
             string id = idPartida.ToString();
 
             // exibindo dados obtidos no forms
@@ -66,7 +67,7 @@ namespace sistema_autonomo_2._0
             string senhaPartida = txtSenhaPartida.Text;
 
             // gerador senha por id jogador
-            var idSenhaJogador = Jogador.EntrarPartida(id, nomeJogador, senhaPartida);
+            var idSenhaJogador = Lobby.EntrarPartida(id, nomeJogador, senhaPartida);
 
             // id e senha
             int idJogador = idSenhaJogador.idJogador;
@@ -88,7 +89,7 @@ namespace sistema_autonomo_2._0
             int id = Convert.ToInt32(idJogador);
             string senhaJogador = txtSenhaJogador.Text;
 
-            int jogadorInicial = Partida.IniciarPartida(id, senhaJogador);
+            int jogadorInicial = Lobby.IniciarPartida(id, senhaJogador);
             string jogador = jogadorInicial.ToString();
 
             lblJogadorInicial.Text = jogador;
@@ -100,7 +101,7 @@ namespace sistema_autonomo_2._0
             int id = Convert.ToInt32(idJogador);
             string senhaJogador = txtSenhaJogador.Text;
 
-            string cartas = Partida.ExibirCartas(id, senhaJogador);
+            string cartas = Lobby.ExibirCartas(id, senhaJogador);
 
             lblCartas.Text = cartas;
         }
@@ -110,7 +111,7 @@ namespace sistema_autonomo_2._0
             string idPartida = txtIdPartida.Text;
             int id = Convert.ToInt32(idPartida);
 
-            var resultado = Partida.VerificarVez(id);
+            var resultado = Lobby.VerificarVez(id);
 
             List<Jogador> lista = new List<Jogador>
             {
@@ -138,7 +139,7 @@ namespace sistema_autonomo_2._0
 
             string personagem = txtPersonagem.Text;
 
-            dgvVerificarVez.DataSource = Jogador.ColocarPersonagem(id, senhaJogador, setor, personagem);
+            dgvVerificarVez.DataSource = Lobby.ColocarPersonagem(id, senhaJogador, setor, personagem);
 
             // abre segundo form
             if (tabuleiro == null || tabuleiro.IsDisposed)
@@ -169,12 +170,11 @@ namespace sistema_autonomo_2._0
         {
             string idJogador = txtIdJogador.Text;
             int id = Convert.ToInt32(idJogador);
-
             string senhaJogador = txtSenhaJogador.Text;
-
             string personagem = txtPersonagem.Text;
 
-            dgvVerificarVez.DataSource = Jogador.PromoverPersonagem(id, senhaJogador, personagem);
+            dgvVerificarVez.DataSource = null;
+            dgvVerificarVez.DataSource = Lobby.PromoverPersonagem(id, senhaJogador, personagem);
         }
 
         private void btnVotar_Click(object sender, EventArgs e)
@@ -194,7 +194,7 @@ namespace sistema_autonomo_2._0
             string idPartida = txtIdPartida.Text;
             int id = Convert.ToInt32(idPartida);
 
-            dgvVerificarVez.DataSource = Partida.ExibirUltimaVotacao(id);
+            dgvVerificarVez.DataSource = Lobby.ExibirUltimaVotacao(id);
         }
     }
 }

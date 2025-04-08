@@ -394,14 +394,14 @@
             // 
             // txtSetor
             // 
-            this.txtSetor.Location = new System.Drawing.Point(581, 25);
+            this.txtSetor.Location = new System.Drawing.Point(581, 58);
             this.txtSetor.Name = "txtSetor";
             this.txtSetor.Size = new System.Drawing.Size(100, 20);
             this.txtSetor.TabIndex = 36;
             // 
             // txtPersonagem
             // 
-            this.txtPersonagem.Location = new System.Drawing.Point(581, 66);
+            this.txtPersonagem.Location = new System.Drawing.Point(581, 99);
             this.txtPersonagem.Name = "txtPersonagem";
             this.txtPersonagem.Size = new System.Drawing.Size(100, 20);
             this.txtPersonagem.TabIndex = 37;
@@ -409,7 +409,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(578, 9);
+            this.label7.Location = new System.Drawing.Point(578, 42);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(32, 13);
             this.label7.TabIndex = 38;
@@ -418,7 +418,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(578, 50);
+            this.label8.Location = new System.Drawing.Point(578, 83);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(66, 13);
             this.label8.TabIndex = 39;
@@ -482,11 +482,11 @@
             // 
             // btnPromoverPersonagem
             // 
-            this.btnPromoverPersonagem.Location = new System.Drawing.Point(581, 104);
+            this.btnPromoverPersonagem.Location = new System.Drawing.Point(698, 93);
             this.btnPromoverPersonagem.Name = "btnPromoverPersonagem";
-            this.btnPromoverPersonagem.Size = new System.Drawing.Size(75, 32);
+            this.btnPromoverPersonagem.Size = new System.Drawing.Size(79, 61);
             this.btnPromoverPersonagem.TabIndex = 44;
-            this.btnPromoverPersonagem.Text = "Promover";
+            this.btnPromoverPersonagem.Text = "Promover Personagem";
             this.btnPromoverPersonagem.UseVisualStyleBackColor = true;
             this.btnPromoverPersonagem.Click += new System.EventHandler(this.btnPromoverPersonagem_Click);
             // 
@@ -503,7 +503,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(578, 164);
+            this.label11.Location = new System.Drawing.Point(578, 199);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(61, 13);
             this.label11.TabIndex = 47;
@@ -511,14 +511,14 @@
             // 
             // txtVotar
             // 
-            this.txtVotar.Location = new System.Drawing.Point(581, 180);
+            this.txtVotar.Location = new System.Drawing.Point(581, 215);
             this.txtVotar.Name = "txtVotar";
             this.txtVotar.Size = new System.Drawing.Size(75, 20);
             this.txtVotar.TabIndex = 48;
             // 
             // btnVotar
             // 
-            this.btnVotar.Location = new System.Drawing.Point(677, 171);
+            this.btnVotar.Location = new System.Drawing.Point(677, 206);
             this.btnVotar.Name = "btnVotar";
             this.btnVotar.Size = new System.Drawing.Size(65, 29);
             this.btnVotar.TabIndex = 49;
@@ -528,7 +528,7 @@
             // 
             // btnExibirVotacao
             // 
-            this.btnExibirVotacao.Location = new System.Drawing.Point(581, 218);
+            this.btnExibirVotacao.Location = new System.Drawing.Point(581, 253);
             this.btnExibirVotacao.Name = "btnExibirVotacao";
             this.btnExibirVotacao.Size = new System.Drawing.Size(161, 39);
             this.btnExibirVotacao.TabIndex = 50;
@@ -538,7 +538,7 @@
             // 
             // btnVerificarVezTabuleiro
             // 
-            this.btnVerificarVezTabuleiro.Location = new System.Drawing.Point(581, 272);
+            this.btnVerificarVezTabuleiro.Location = new System.Drawing.Point(581, 307);
             this.btnVerificarVezTabuleiro.Name = "btnVerificarVezTabuleiro";
             this.btnVerificarVezTabuleiro.Size = new System.Drawing.Size(161, 39);
             this.btnVerificarVezTabuleiro.TabIndex = 51;
