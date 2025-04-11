@@ -15,7 +15,7 @@ namespace sistema_autonomo_2._0
     {
         VerificarErro verificarErro = new VerificarErro();
         TabuleiroForm tabuleiro;
-
+        List<Tabuleiro> tb;
 
         public btnTabuleiro()
         {
@@ -131,15 +131,14 @@ namespace sistema_autonomo_2._0
         {
             string idJogador = txtIdJogador.Text;
             int id = Convert.ToInt32(idJogador);
-
             string senhaJogador = txtSenhaJogador.Text;
-
             string setorStr = txtSetor.Text;
             int setor = Convert.ToInt32(setorStr);
-
             string personagem = txtPersonagem.Text;
 
-            dgvVerificarVez.DataSource = Lobby.ColocarPersonagem(id, senhaJogador, setor, personagem);
+            // tb -> lista declarada no início
+            tb = Lobby.ColocarPersonagem(id, senhaJogador, setor, personagem);
+            dgvVerificarVez.DataSource = tb;
 
             // abre segundo form
             if (tabuleiro == null || tabuleiro.IsDisposed)
@@ -148,8 +147,12 @@ namespace sistema_autonomo_2._0
                 tabuleiro.Show();
             }
 
-            // adiciona peças
-            tabuleiro.AdicionarPersonagem(setor, personagem);
+            // exibindo graficamente
+            foreach(var t in tb)
+            {
+                tabuleiro.AdicionarPersonagem(t.Setor, t.Personagem);
+            }
+
         }
 
         private void btnTabuleiroForm_Click(object sender, EventArgs e)
@@ -164,6 +167,8 @@ namespace sistema_autonomo_2._0
                 tabuleiro = new TabuleiroForm();
                 tabuleiro.Show();
             }
+
+            dgvVerificarVez.DataSource = tb;
         }
 
         private void btnPromoverPersonagem_Click(object sender, EventArgs e)
@@ -173,8 +178,21 @@ namespace sistema_autonomo_2._0
             string senhaJogador = txtSenhaJogador.Text;
             string personagem = txtPersonagem.Text;
 
+            //string idPartida = txtIdPartida.Text;
+            //int idPtd = Convert.ToInt32(idPartida);
+
             dgvVerificarVez.DataSource = null;
             dgvVerificarVez.DataSource = Lobby.PromoverPersonagem(id, senhaJogador, personagem);
+            
+
+            //tb = Lobby.RetornarEstadoTabuleiro(idPtd);
+
+            //foreach (var t in tb)
+            //{
+            //    tabuleiro.AdicionarPersonagem(t.Setor, t.Personagem);
+            //    label13.Text = t.Setor.ToString();
+            //    label12.Text = t.Personagem;
+            //}
         }
 
         private void btnVotar_Click(object sender, EventArgs e)

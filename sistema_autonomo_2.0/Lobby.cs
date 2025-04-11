@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using KingMeServer;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace sistema_autonomo_2._0
 {
@@ -112,6 +113,30 @@ namespace sistema_autonomo_2._0
             }
 
             return (idJogador, status, rodada, faseAtual);
+        }
+
+        // conseguir devolver o estado do tabuleiro depois da promoção
+        public static List<Tabuleiro> RetornarEstadoTabuleiro(int idPartida)
+        {
+            string retorno = Jogo.VerificarVez(idPartida);
+            retorno = retorno.Replace("\r", "");
+            retorno = retorno.Substring(0, retorno.Length - 1);
+            string[] statusPartida = retorno.Split('\n');
+            List<Tabuleiro> setorPersonagem = new List<Tabuleiro>();
+
+            for (int i = 0; i < statusPartida.Length; i++)
+            {
+                string[] dados = statusPartida[i].Split(',');
+
+                Tabuleiro t = new Tabuleiro();
+
+                t.Setor = Convert.ToInt32(dados[0]);
+                t.Personagem = dados[1];
+
+                setorPersonagem.Add(t);
+            }
+
+            return setorPersonagem;
         }
 
         public static (int idJogador, string senhaJogador) EntrarPartida(int idPartida, string nomeJogador, string senhaPartida)
