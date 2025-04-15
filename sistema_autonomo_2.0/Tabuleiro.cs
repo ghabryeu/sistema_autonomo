@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace sistema_autonomo_2._0
 {
-    class Tabuleiro
+    public class Tabuleiro
     {
         int setor;
         string personagem;

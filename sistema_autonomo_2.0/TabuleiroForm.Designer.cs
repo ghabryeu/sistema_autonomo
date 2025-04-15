@@ -30,6 +30,7 @@
         {
             this.panel49 = new System.Windows.Forms.Panel();
             this.panel84 = new System.Windows.Forms.Panel();
+            this.pnlOficiais = new System.Windows.Forms.Panel();
             this.panel86 = new System.Windows.Forms.Panel();
             this.panel87 = new System.Windows.Forms.Panel();
             this.panel88 = new System.Windows.Forms.Panel();
@@ -64,19 +65,6 @@
             this.panel117 = new System.Windows.Forms.Panel();
             this.panel118 = new System.Windows.Forms.Panel();
             this.panel119 = new System.Windows.Forms.Panel();
-            this.pnlT = new System.Windows.Forms.Panel();
-            this.pnlR = new System.Windows.Forms.Panel();
-            this.pnlQ = new System.Windows.Forms.Panel();
-            this.pnlM = new System.Windows.Forms.Panel();
-            this.pnlL = new System.Windows.Forms.Panel();
-            this.pnlK = new System.Windows.Forms.Panel();
-            this.pnlH = new System.Windows.Forms.Panel();
-            this.pnlG = new System.Windows.Forms.Panel();
-            this.pnlE = new System.Windows.Forms.Panel();
-            this.pnlD = new System.Windows.Forms.Panel();
-            this.pnlC = new System.Windows.Forms.Panel();
-            this.pnlB = new System.Windows.Forms.Panel();
-            this.pnlA = new System.Windows.Forms.Panel();
             this.pnlPlebeus = new System.Windows.Forms.Panel();
             this.pnlMercadores = new System.Windows.Forms.Panel();
             this.pnlArtesaos = new System.Windows.Forms.Panel();
@@ -113,7 +101,6 @@
             this.panel153 = new System.Windows.Forms.Panel();
             this.panel154 = new System.Windows.Forms.Panel();
             this.panel155 = new System.Windows.Forms.Panel();
-            this.pnlOficiais = new System.Windows.Forms.Panel();
             this.pnlNobres = new System.Windows.Forms.Panel();
             this.pnlDignatarios = new System.Windows.Forms.Panel();
             this.panel51 = new System.Windows.Forms.Panel();
@@ -260,7 +247,7 @@
             this.panel49.Controls.Add(this.panel84);
             this.panel49.Controls.Add(this.pnlOficiais);
             this.panel49.Controls.Add(this.panel86);
-            this.panel49.Location = new System.Drawing.Point(188, 163);
+            this.panel49.Location = new System.Drawing.Point(60, 179);
             this.panel49.Name = "panel49";
             this.panel49.Size = new System.Drawing.Size(600, 50);
             this.panel49.TabIndex = 87;
@@ -271,6 +258,14 @@
             this.panel84.Name = "panel84";
             this.panel84.Size = new System.Drawing.Size(600, 50);
             this.panel84.TabIndex = 83;
+            // 
+            // pnlOficiais
+            // 
+            this.pnlOficiais.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.oficiais;
+            this.pnlOficiais.Location = new System.Drawing.Point(0, 0);
+            this.pnlOficiais.Name = "pnlOficiais";
+            this.pnlOficiais.Size = new System.Drawing.Size(600, 50);
+            this.pnlOficiais.TabIndex = 81;
             // 
             // panel86
             // 
@@ -543,128 +538,11 @@
             this.panel119.Size = new System.Drawing.Size(600, 50);
             this.panel119.TabIndex = 59;
             // 
-            // pnlT
-            // 
-            this.pnlT.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.T;
-            this.pnlT.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlT.Location = new System.Drawing.Point(12, 349);
-            this.pnlT.Name = "pnlT";
-            this.pnlT.Size = new System.Drawing.Size(40, 40);
-            this.pnlT.TabIndex = 103;
-            // 
-            // pnlR
-            // 
-            this.pnlR.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.R;
-            this.pnlR.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlR.Location = new System.Drawing.Point(72, 294);
-            this.pnlR.Name = "pnlR";
-            this.pnlR.Size = new System.Drawing.Size(40, 40);
-            this.pnlR.TabIndex = 102;
-            // 
-            // pnlQ
-            // 
-            this.pnlQ.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.Q;
-            this.pnlQ.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlQ.Location = new System.Drawing.Point(12, 294);
-            this.pnlQ.Name = "pnlQ";
-            this.pnlQ.Size = new System.Drawing.Size(40, 40);
-            this.pnlQ.TabIndex = 101;
-            // 
-            // pnlM
-            // 
-            this.pnlM.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.M;
-            this.pnlM.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlM.Location = new System.Drawing.Point(72, 235);
-            this.pnlM.Name = "pnlM";
-            this.pnlM.Size = new System.Drawing.Size(40, 40);
-            this.pnlM.TabIndex = 100;
-            // 
-            // pnlL
-            // 
-            this.pnlL.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.L;
-            this.pnlL.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlL.Location = new System.Drawing.Point(12, 235);
-            this.pnlL.Name = "pnlL";
-            this.pnlL.Size = new System.Drawing.Size(40, 40);
-            this.pnlL.TabIndex = 99;
-            // 
-            // pnlK
-            // 
-            this.pnlK.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.K;
-            this.pnlK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlK.Location = new System.Drawing.Point(72, 179);
-            this.pnlK.Name = "pnlK";
-            this.pnlK.Size = new System.Drawing.Size(40, 40);
-            this.pnlK.TabIndex = 98;
-            // 
-            // pnlH
-            // 
-            this.pnlH.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.H;
-            this.pnlH.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlH.Location = new System.Drawing.Point(12, 179);
-            this.pnlH.Name = "pnlH";
-            this.pnlH.Size = new System.Drawing.Size(40, 40);
-            this.pnlH.TabIndex = 97;
-            // 
-            // pnlG
-            // 
-            this.pnlG.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.G;
-            this.pnlG.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlG.Location = new System.Drawing.Point(72, 124);
-            this.pnlG.Name = "pnlG";
-            this.pnlG.Size = new System.Drawing.Size(40, 40);
-            this.pnlG.TabIndex = 96;
-            // 
-            // pnlE
-            // 
-            this.pnlE.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.E;
-            this.pnlE.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlE.Location = new System.Drawing.Point(12, 124);
-            this.pnlE.Name = "pnlE";
-            this.pnlE.Size = new System.Drawing.Size(40, 40);
-            this.pnlE.TabIndex = 95;
-            // 
-            // pnlD
-            // 
-            this.pnlD.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.D;
-            this.pnlD.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlD.Location = new System.Drawing.Point(72, 73);
-            this.pnlD.Name = "pnlD";
-            this.pnlD.Size = new System.Drawing.Size(40, 40);
-            this.pnlD.TabIndex = 94;
-            // 
-            // pnlC
-            // 
-            this.pnlC.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.C;
-            this.pnlC.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlC.Location = new System.Drawing.Point(12, 73);
-            this.pnlC.Name = "pnlC";
-            this.pnlC.Size = new System.Drawing.Size(40, 40);
-            this.pnlC.TabIndex = 93;
-            // 
-            // pnlB
-            // 
-            this.pnlB.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.B;
-            this.pnlB.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlB.Location = new System.Drawing.Point(72, 22);
-            this.pnlB.Name = "pnlB";
-            this.pnlB.Size = new System.Drawing.Size(40, 40);
-            this.pnlB.TabIndex = 92;
-            // 
-            // pnlA
-            // 
-            this.pnlA.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.A;
-            this.pnlA.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pnlA.Location = new System.Drawing.Point(12, 22);
-            this.pnlA.Name = "pnlA";
-            this.pnlA.Size = new System.Drawing.Size(40, 40);
-            this.pnlA.TabIndex = 91;
-            // 
             // pnlPlebeus
             // 
             this.pnlPlebeus.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.plebeus;
             this.pnlPlebeus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlPlebeus.Location = new System.Drawing.Point(188, 315);
+            this.pnlPlebeus.Location = new System.Drawing.Point(60, 331);
             this.pnlPlebeus.Name = "pnlPlebeus";
             this.pnlPlebeus.Size = new System.Drawing.Size(600, 50);
             this.pnlPlebeus.TabIndex = 90;
@@ -673,7 +551,7 @@
             // 
             this.pnlMercadores.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.mercadores;
             this.pnlMercadores.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlMercadores.Location = new System.Drawing.Point(188, 214);
+            this.pnlMercadores.Location = new System.Drawing.Point(60, 230);
             this.pnlMercadores.Name = "pnlMercadores";
             this.pnlMercadores.Size = new System.Drawing.Size(600, 50);
             this.pnlMercadores.TabIndex = 88;
@@ -685,7 +563,7 @@
             this.pnlArtesaos.Controls.Add(this.panel123);
             this.pnlArtesaos.Controls.Add(this.panel153);
             this.pnlArtesaos.Controls.Add(this.panel155);
-            this.pnlArtesaos.Location = new System.Drawing.Point(188, 265);
+            this.pnlArtesaos.Location = new System.Drawing.Point(60, 281);
             this.pnlArtesaos.Name = "pnlArtesaos";
             this.pnlArtesaos.Size = new System.Drawing.Size(600, 50);
             this.pnlArtesaos.TabIndex = 89;
@@ -951,19 +829,11 @@
             this.panel155.Size = new System.Drawing.Size(600, 50);
             this.panel155.TabIndex = 59;
             // 
-            // pnlOficiais
-            // 
-            this.pnlOficiais.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.oficiais;
-            this.pnlOficiais.Location = new System.Drawing.Point(0, 0);
-            this.pnlOficiais.Name = "pnlOficiais";
-            this.pnlOficiais.Size = new System.Drawing.Size(600, 50);
-            this.pnlOficiais.TabIndex = 81;
-            // 
             // pnlNobres
             // 
             this.pnlNobres.BackgroundImage = global::sistema_autonomo_2._0.Properties.Resources.nobres;
             this.pnlNobres.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pnlNobres.Location = new System.Drawing.Point(188, 62);
+            this.pnlNobres.Location = new System.Drawing.Point(60, 78);
             this.pnlNobres.Name = "pnlNobres";
             this.pnlNobres.Size = new System.Drawing.Size(600, 50);
             this.pnlNobres.TabIndex = 85;
@@ -975,7 +845,7 @@
             this.pnlDignatarios.Controls.Add(this.panel51);
             this.pnlDignatarios.Controls.Add(this.panel81);
             this.pnlDignatarios.Controls.Add(this.panel83);
-            this.pnlDignatarios.Location = new System.Drawing.Point(188, 113);
+            this.pnlDignatarios.Location = new System.Drawing.Point(60, 129);
             this.pnlDignatarios.Name = "pnlDignatarios";
             this.pnlDignatarios.Size = new System.Drawing.Size(600, 50);
             this.pnlDignatarios.TabIndex = 86;
@@ -1248,7 +1118,7 @@
             this.pnlRei.Controls.Add(this.panel18);
             this.pnlRei.Controls.Add(this.panel16);
             this.pnlRei.Controls.Add(this.panel1);
-            this.pnlRei.Location = new System.Drawing.Point(188, 12);
+            this.pnlRei.Location = new System.Drawing.Point(60, 28);
             this.pnlRei.Name = "pnlRei";
             this.pnlRei.Size = new System.Drawing.Size(600, 50);
             this.pnlRei.TabIndex = 84;
@@ -1518,20 +1388,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.pnlA);
-            this.Controls.Add(this.pnlT);
-            this.Controls.Add(this.pnlR);
-            this.Controls.Add(this.pnlQ);
-            this.Controls.Add(this.pnlM);
-            this.Controls.Add(this.pnlL);
-            this.Controls.Add(this.pnlK);
-            this.Controls.Add(this.pnlH);
-            this.Controls.Add(this.pnlG);
-            this.Controls.Add(this.pnlE);
-            this.Controls.Add(this.pnlD);
-            this.Controls.Add(this.pnlC);
-            this.Controls.Add(this.pnlB);
+            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.ClientSize = new System.Drawing.Size(717, 410);
             this.Controls.Add(this.pnlPlebeus);
             this.Controls.Add(this.pnlMercadores);
             this.Controls.Add(this.pnlArtesaos);
@@ -1759,18 +1617,5 @@
         private System.Windows.Forms.Panel panel16;
         private System.Windows.Forms.Panel panel17;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel pnlA;
-        private System.Windows.Forms.Panel pnlT;
-        private System.Windows.Forms.Panel pnlR;
-        private System.Windows.Forms.Panel pnlQ;
-        private System.Windows.Forms.Panel pnlM;
-        private System.Windows.Forms.Panel pnlL;
-        private System.Windows.Forms.Panel pnlK;
-        private System.Windows.Forms.Panel pnlH;
-        private System.Windows.Forms.Panel pnlG;
-        private System.Windows.Forms.Panel pnlE;
-        private System.Windows.Forms.Panel pnlD;
-        private System.Windows.Forms.Panel pnlC;
-        private System.Windows.Forms.Panel pnlB;
     }
 }

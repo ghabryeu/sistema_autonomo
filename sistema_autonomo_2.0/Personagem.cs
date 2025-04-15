@@ -11,6 +11,7 @@ namespace sistema_autonomo_2._0
         string personagem;
         int id;
         string voto;
+        int votoRestante;
 
         public string Inicial
         {
@@ -28,6 +29,12 @@ namespace sistema_autonomo_2._0
         {
             get { return voto; }
             set { voto = value; }
+        }
+
+        public int VotoRestante
+        {
+            get { return votoRestante; }
+            set { votoRestante = value; }
         }
 
     }

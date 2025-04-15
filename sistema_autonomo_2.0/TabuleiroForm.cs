@@ -13,11 +13,61 @@ namespace sistema_autonomo_2._0
     public partial class TabuleiroForm: Form
     {
         public Panel pnlSetor = null;
-
+        public List<Panel> Personagens { get; set; } = new List<Panel>();
         public TabuleiroForm()
         {
             InitializeComponent();
             this.FormClosing += HideTabuleiro; // esconde formulário em vez de fechar
+
+            Panel pnlA = CriarPainelPersonagem("A", Properties.Resources.A);
+            Panel pnlB = CriarPainelPersonagem("B", Properties.Resources.B);
+            Panel pnlC = CriarPainelPersonagem("C", Properties.Resources.C);
+            Panel pnlD = CriarPainelPersonagem("D", Properties.Resources.D);
+            Panel pnlE = CriarPainelPersonagem("E", Properties.Resources.E);
+            Panel pnlG = CriarPainelPersonagem("G", Properties.Resources.G);
+            Panel pnlH = CriarPainelPersonagem("H", Properties.Resources.H);
+            Panel pnlK = CriarPainelPersonagem("K", Properties.Resources.K);
+            Panel pnlL = CriarPainelPersonagem("L", Properties.Resources.L);
+            Panel pnlM = CriarPainelPersonagem("M", Properties.Resources.M);
+            Panel pnlQ = CriarPainelPersonagem("Q", Properties.Resources.Q);
+            Panel pnlR = CriarPainelPersonagem("R", Properties.Resources.R);
+            Panel pnlT = CriarPainelPersonagem("T", Properties.Resources.T);
+
+            Personagens.Add(pnlA);
+            Personagens.Add(pnlB);
+            Personagens.Add(pnlC);
+            Personagens.Add(pnlD);
+            Personagens.Add(pnlE);
+            Personagens.Add(pnlG);
+            Personagens.Add(pnlH);
+            Personagens.Add(pnlK);
+            Personagens.Add(pnlL);
+            Personagens.Add(pnlM);
+            Personagens.Add(pnlQ);
+            Personagens.Add(pnlR);
+            Personagens.Add(pnlT);
+        }
+
+        public Panel CriarPainelPersonagem(string nome, Image imagem)
+        {
+            Panel painel = new Panel();
+            painel.Size = new Size(40, 40);
+            painel.BackgroundImage = imagem;
+            painel.BackgroundImageLayout = ImageLayout.Stretch;
+            painel.Name = "pnl" + nome.ToUpper();  
+            return painel;
+        }
+
+        public Panel BuscarPainelPersonagem(string personagem)
+        {
+            foreach (var p in Personagens)
+            {
+                if (p.Name == "pnl" + personagem.ToUpper())
+                {
+                    return p;
+                }
+            }
+            return null;
         }
 
         public void AdicionarPersonagem(int setor, string personagem)
@@ -29,7 +79,6 @@ namespace sistema_autonomo_2._0
             //pnlA.Controls.Add(pnlPersonagem);
 
             Panel pnlSetor = null;
-            //setor = 0;
 
             if (personagem == "a" || personagem == "A")
             {
@@ -54,15 +103,26 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if(pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor; // usar caso precise de outros métodos
-                    pnlSetor.Controls.Add(pnlA);
-                    pnlA.Location = new Point(3, 6); 
-                    pnlA.Visible = true;
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor; // usar caso precise de outros métodos
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(3, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -90,15 +150,27 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
 
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlB);
-                    pnlB.Location = new Point(49, 6);
-                    pnlB.Visible = true;
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(49, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -126,15 +198,26 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlC);
-                    pnlC.Location = new Point(95, 6);
-                    pnlC.Visible = true;
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(95, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -162,15 +245,26 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlD);
-                    pnlD.Location = new Point(141, 6);
-                    pnlD.Visible = true;
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(141, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -198,15 +292,27 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlE);
-                    pnlE.Location = new Point(187, 6);
-                    pnlE.Visible = true;
+
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(187, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -234,15 +340,26 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlG);
-                    pnlG.Location = new Point(233, 6);
-                    pnlG.Visible = true;
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(233, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -270,15 +387,27 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlH);
-                    pnlH.Location = new Point(279, 6);
-                    pnlH.Visible = true;
+
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(279, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -306,15 +435,27 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlK);
-                    pnlK.Location = new Point(325, 6);
-                    pnlK.Visible = true;
+
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(325, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -342,15 +483,26 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlL);
-                    pnlL.Location = new Point(371, 6);
-                    pnlL.Visible = true;
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(371, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -378,15 +530,26 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlM);
-                    pnlM.Location = new Point(417, 6);
-                    pnlM.Visible = true;
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(417, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -414,15 +577,26 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlQ);
-                    pnlQ.Location = new Point(463, 6);
-                    pnlQ.Visible = true;
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(463, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -450,15 +624,26 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlR);
-                    pnlR.Location = new Point(509, 6);
-                    pnlR.Visible = true;
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(509, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
@@ -486,19 +671,43 @@ namespace sistema_autonomo_2._0
                     case 4:
                         pnlSetor = pnlDignatarios;
                         break;
-
+                    case 5:
+                        pnlSetor = pnlNobres;
+                        break;
+                    case 10:
+                        pnlSetor = pnlRei;
+                        break;
                 }
 
                 if (pnlSetor != null)
                 {
-                    this.pnlSetor = pnlSetor;
-                    pnlSetor.Controls.Add(pnlT);
-                    pnlT.Location = new Point(555, 6);
-                    pnlT.Visible = true;
+                    Panel painelPersonagem = BuscarPainelPersonagem(personagem);
+
+                    if(painelPersonagem != null)
+                    {
+                        this.pnlSetor = pnlSetor;
+                        pnlSetor.Controls.Add(painelPersonagem);
+                        painelPersonagem.Location = new Point(555, 6);
+                        painelPersonagem.Visible = true;
+                        painelPersonagem.Refresh();
+                    }
                 }
 
             }
 
+        }
+
+        public void LimparPersonagens()
+        {
+            foreach (var panel in Personagens)
+            {
+                if (panel.Parent != null)
+                {
+                    panel.Parent.Controls.Remove(panel);
+                }
+
+                panel.Visible = false; 
+            }
         }
 
         void HideTabuleiro(object sender, FormClosingEventArgs e)

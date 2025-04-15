@@ -14,8 +14,12 @@ namespace sistema_autonomo_2._0
     public partial class btnTabuleiro: Form
     {
         VerificarErro verificarErro = new VerificarErro();
+
         TabuleiroForm tabuleiro;
+        
         List<Tabuleiro> tb;
+
+        Lobby lobby = new Lobby();
 
         public btnTabuleiro()
         {
@@ -81,9 +85,11 @@ namespace sistema_autonomo_2._0
 
             txtIdJogador.Text = idJogadorStr;
             txtSenhaJogador.Text = senhaJogador;
+
+            lobby.MeuID = txtIdJogador.Text; // salva meu id
         }
 
-        private void btnIniciarJogo_Click(object sender, EventArgs e)
+        public void IniciarJogo()
         {
             string idJogador = txtIdJogador.Text;
             int id = Convert.ToInt32(idJogador);
@@ -93,6 +99,12 @@ namespace sistema_autonomo_2._0
             string jogador = jogadorInicial.ToString();
 
             lblJogadorInicial.Text = jogador;
+        }
+
+        private void btnIniciarJogo_Click(object sender, EventArgs e)
+        {
+            IniciarJogo();
+            tmrIniciar.Enabled = true; // habilitando o timer
         }
 
         private void btnExibirCartas_Click(object sender, EventArgs e)
@@ -106,12 +118,14 @@ namespace sistema_autonomo_2._0
             lblCartas.Text = cartas;
         }
 
-        private void btnVerificarVez_Click(object sender, EventArgs e)
+        // VERIFICAR VEZ
+        public void VerificarVez()
         {
             string idPartida = txtIdPartida.Text;
             int id = Convert.ToInt32(idPartida);
 
             var resultado = Lobby.VerificarVez(id);
+            lobby.JogadorDaVez = resultado.idJogador; // salva id jogador da vez
 
             List<Jogador> lista = new List<Jogador>
             {
@@ -127,14 +141,20 @@ namespace sistema_autonomo_2._0
             dgvVerificarVez.DataSource = lista;
         }
 
-        private void btnColocarPersonagem_Click(object sender, EventArgs e)
+        private void btnVerificarVez_Click(object sender, EventArgs e)
+        {
+            VerificarVez();
+        }
+
+        // COLOCAR PERSONAGEM
+        public void ColocarPersonagem(int setor, string personagem)
         {
             string idJogador = txtIdJogador.Text;
             int id = Convert.ToInt32(idJogador);
             string senhaJogador = txtSenhaJogador.Text;
-            string setorStr = txtSetor.Text;
-            int setor = Convert.ToInt32(setorStr);
-            string personagem = txtPersonagem.Text;
+            //string setorStr = txtSetor.Text;
+            //int setor = Convert.ToInt32(setorStr);
+            //string personagem = txtPersonagem.Text;
 
             // tb -> lista declarada no início
             tb = Lobby.ColocarPersonagem(id, senhaJogador, setor, personagem);
@@ -148,18 +168,79 @@ namespace sistema_autonomo_2._0
             }
 
             // exibindo graficamente
-            foreach(var t in tb)
+            foreach (var t in tb)
             {
                 tabuleiro.AdicionarPersonagem(t.Setor, t.Personagem);
+            }
+        }
+
+        private void btnColocarPersonagem_Click(object sender, EventArgs e)
+        {
+            //ColocarPersonagem();
+        }
+
+        private void btnPromoverPersonagem_Click(object sender, EventArgs e)
+        {
+            string idJogador = txtIdJogador.Text;
+            int id = Convert.ToInt32(idJogador);
+            string senhaJogador = txtSenhaJogador.Text;
+            string personagem = txtPersonagem.Text;
+
+            string idPartida = txtIdPartida.Text;
+            int idPtd = Convert.ToInt32(idPartida);
+
+            tabuleiro.LimparPersonagens();
+
+            dgvVerificarVez.DataSource = Lobby.PromoverPersonagem(id, senhaJogador, personagem);
+
+            tb = Lobby.RetornarEstadoTabuleiro(idPtd);
+
+            foreach (var t in tb)
+            {
+                tabuleiro.AdicionarPersonagem(t.Setor, t.Personagem);
+                label13.Text = t.Setor.ToString();
+                label12.Text = t.Personagem;
             }
 
         }
 
-        private void btnTabuleiroForm_Click(object sender, EventArgs e)
+        private void btnVotar_Click(object sender, EventArgs e)
+        {
+            string idJogador = txtIdJogador.Text;
+            int id = Convert.ToInt32(idJogador);
+            string senhaJogador = txtSenhaJogador.Text;
+            string voto = txtVotar.Text;
+
+            string idPartida = txtIdPartida.Text;
+            int idPtd = Convert.ToInt32(idPartida);
+
+            tabuleiro.LimparPersonagens();
+
+            Jogo.Votar(id, senhaJogador, voto);
+
+            tb = Lobby.RetornarEstadoTabuleiro(idPtd);
+
+            foreach (var t in tb)
+            {
+                tabuleiro.AdicionarPersonagem(t.Setor, t.Personagem);
+                label13.Text = t.Setor.ToString();
+                label12.Text = t.Personagem;
+            }
+        }
+
+        private void btnExibirVotacao_Click(object sender, EventArgs e)
+        {
+            string idPartida = txtIdPartida.Text;
+            int id = Convert.ToInt32(idPartida);
+
+            dgvVerificarVez.DataSource = Lobby.ExibirUltimaVotacao(id);
+        }
+
+        private void btnVerificarVezTabuleiro_Click(object sender, EventArgs e)
         {
             if (tabuleiro != null && !tabuleiro.IsDisposed)
             {
-                tabuleiro.Show(); 
+                tabuleiro.Show();
                 tabuleiro.BringToFront();
             }
             else
@@ -171,48 +252,26 @@ namespace sistema_autonomo_2._0
             dgvVerificarVez.DataSource = tb;
         }
 
-        private void btnPromoverPersonagem_Click(object sender, EventArgs e)
+
+        /////////////////// TIMER /////////////////
+
+        private void tmrIniciar_Tick(object sender, EventArgs e)
         {
-            string idJogador = txtIdJogador.Text;
-            int id = Convert.ToInt32(idJogador);
-            string senhaJogador = txtSenhaJogador.Text;
-            string personagem = txtPersonagem.Text;
-
-            //string idPartida = txtIdPartida.Text;
-            //int idPtd = Convert.ToInt32(idPartida);
-
-            dgvVerificarVez.DataSource = null;
-            dgvVerificarVez.DataSource = Lobby.PromoverPersonagem(id, senhaJogador, personagem);
+            tmrIniciar.Enabled = false; // desabilitando o timer
             
+            var resultado = Lobby.VerificarVez(Convert.ToInt32(txtIdPartida.Text));
+            lobby.JogadorDaVez = resultado.idJogador;  // atualiza a vez
 
-            //tb = Lobby.RetornarEstadoTabuleiro(idPtd);
+            int meuID = Convert.ToInt32(lobby.MeuID); // id de entrada
 
-            //foreach (var t in tb)
-            //{
-            //    tabuleiro.AdicionarPersonagem(t.Setor, t.Personagem);
-            //    label13.Text = t.Setor.ToString();
-            //    label12.Text = t.Personagem;
-            //}
-        }
+            if (lobby.JogadorDaVez == meuID)
+            {
+                int setor = 1;
+                string personagem = "A";
+                ColocarPersonagem(setor, personagem);
+            }
 
-        private void btnVotar_Click(object sender, EventArgs e)
-        {
-            string idJogador = txtIdJogador.Text;
-            int id = Convert.ToInt32(idJogador);
-
-            string senhaJogador = txtSenhaJogador.Text;
-
-            string voto = txtVotar.Text;
-
-            Jogo.Votar(id, senhaJogador, voto);
-        }
-
-        private void btnExibirVotacao_Click(object sender, EventArgs e)
-        {
-            string idPartida = txtIdPartida.Text;
-            int id = Convert.ToInt32(idPartida);
-
-            dgvVerificarVez.DataSource = Lobby.ExibirUltimaVotacao(id);
+            tmrIniciar.Enabled = true; // habilitando o timer novamente
         }
     }
 }

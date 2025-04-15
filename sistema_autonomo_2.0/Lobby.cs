@@ -10,6 +10,25 @@ namespace sistema_autonomo_2._0
 {
     class Lobby
     {
+        int jogadorDaVez;
+        string meuID;
+
+        public int JogadorDaVez
+        {
+            get { return jogadorDaVez; }
+            set { jogadorDaVez = value; }
+        }
+
+        public string MeuID
+        {
+            get { return meuID; }
+            set { meuID = value; }
+        }
+
+        public Lobby()
+        {
+            this.jogadorDaVez = 0;
+        }
 
         public static List<Partida> ListarPartida()
         {

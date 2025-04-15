@@ -24,6 +24,18 @@ namespace sistema_autonomo_2._0
             set { id = value; }
         }
 
+        public string Nome
+        {
+            get { return nome; }
+            set { nome = value; }
+        }
+
+        public int Pontuacao
+        {
+            get { return pontuacao; }
+            set { pontuacao = value; }
+        }
+
         public char Status
         {
             get { return status; }
@@ -40,18 +52,6 @@ namespace sistema_autonomo_2._0
         {
             get { return faseAtual; }
             set { faseAtual = value; }
-        }
-
-        public string Nome
-        {
-            get { return nome; }
-            set { nome = value; }
-        }
-
-        public int Pontuacao
-        {
-            get { return pontuacao; }
-            set { pontuacao = value; }
         }
 
     }
