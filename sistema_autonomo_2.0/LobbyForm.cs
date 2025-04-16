@@ -13,12 +13,9 @@ namespace sistema_autonomo_2._0
 {
     public partial class btnTabuleiro: Form
     {
-        VerificarErro verificarErro = new VerificarErro();
-
+        //VerificarErro verificarErro = new VerificarErro();
         TabuleiroForm tabuleiro;
-        
         List<Tabuleiro> tb;
-
         Lobby lobby = new Lobby();
 
         public btnTabuleiro()
@@ -29,25 +26,19 @@ namespace sistema_autonomo_2._0
             lblGrupo.Text = "Juízes de Common Law";
         }
 
-        private void btnListarPartidas_Click(object sender, EventArgs e)
+        public void ListarPartidas()
         {
             dgvListarPartidas.DataSource = Lobby.ListarPartida();
         }
 
-        private void btnListarJogadores_Click(object sender, EventArgs e)
+        public void ListarJogadores()
         {
-            string idPartida = txtIdPartida.Text; // informação do forms
-            int id = Convert.ToInt32(idPartida); // convertendo p int
-
-            //if (!verificarErro.VerificarIdPartida(id))
-            //{
-            //    return;
-            //}
-
+            string idPartida = txtIdPartida.Text;
+            int id = Convert.ToInt32(idPartida);
             dgvListarJogadores.DataSource = Lobby.ListarJogador(id);
         }
 
-        private void btnCriarPartida_Click(object sender, EventArgs e)
+        public void CriarPartida()
         {
             // informações do forms
             string nomePartida = txtNomePartida.Text;
@@ -62,7 +53,7 @@ namespace sistema_autonomo_2._0
             txtIdPartida.Text = id;
         }
 
-        private void btnEntrarPartida_Click(object sender, EventArgs e)
+        public void EntrarPartida()
         {
             // pegando informações do forms
             string idPartida = txtIdPartida.Text;
@@ -86,7 +77,7 @@ namespace sistema_autonomo_2._0
             txtIdJogador.Text = idJogadorStr;
             txtSenhaJogador.Text = senhaJogador;
 
-            lobby.MeuID = txtIdJogador.Text; // salva meu id
+            lobby.MeuID = idSenhaJogador.idJogador; // salva id jogador que entrou na partida
         }
 
         public void IniciarJogo()
@@ -101,13 +92,7 @@ namespace sistema_autonomo_2._0
             lblJogadorInicial.Text = jogador;
         }
 
-        private void btnIniciarJogo_Click(object sender, EventArgs e)
-        {
-            IniciarJogo();
-            tmrIniciar.Enabled = true; // habilitando o timer
-        }
-
-        private void btnExibirCartas_Click(object sender, EventArgs e)
+        public void ExibirCartas()
         {
             string idJogador = txtIdJogador.Text;
             int id = Convert.ToInt32(idJogador);
@@ -118,7 +103,6 @@ namespace sistema_autonomo_2._0
             lblCartas.Text = cartas;
         }
 
-        // VERIFICAR VEZ
         public void VerificarVez()
         {
             string idPartida = txtIdPartida.Text;
@@ -141,12 +125,6 @@ namespace sistema_autonomo_2._0
             dgvVerificarVez.DataSource = lista;
         }
 
-        private void btnVerificarVez_Click(object sender, EventArgs e)
-        {
-            VerificarVez();
-        }
-
-        // COLOCAR PERSONAGEM
         public void ColocarPersonagem(int setor, string personagem)
         {
             string idJogador = txtIdJogador.Text;
@@ -174,12 +152,7 @@ namespace sistema_autonomo_2._0
             }
         }
 
-        private void btnColocarPersonagem_Click(object sender, EventArgs e)
-        {
-            //ColocarPersonagem();
-        }
-
-        private void btnPromoverPersonagem_Click(object sender, EventArgs e)
+        public void PromoverPersonagem()
         {
             string idJogador = txtIdJogador.Text;
             int id = Convert.ToInt32(idJogador);
@@ -201,10 +174,9 @@ namespace sistema_autonomo_2._0
                 label13.Text = t.Setor.ToString();
                 label12.Text = t.Personagem;
             }
-
         }
 
-        private void btnVotar_Click(object sender, EventArgs e)
+        public void Votar()
         {
             string idJogador = txtIdJogador.Text;
             int id = Convert.ToInt32(idJogador);
@@ -228,7 +200,7 @@ namespace sistema_autonomo_2._0
             }
         }
 
-        private void btnExibirVotacao_Click(object sender, EventArgs e)
+        public void ExibirVotacao()
         {
             string idPartida = txtIdPartida.Text;
             int id = Convert.ToInt32(idPartida);
@@ -236,7 +208,7 @@ namespace sistema_autonomo_2._0
             dgvVerificarVez.DataSource = Lobby.ExibirUltimaVotacao(id);
         }
 
-        private void btnVerificarVezTabuleiro_Click(object sender, EventArgs e)
+        public void VerificarVezTabuleiro()
         {
             if (tabuleiro != null && !tabuleiro.IsDisposed)
             {
@@ -252,19 +224,85 @@ namespace sistema_autonomo_2._0
             dgvVerificarVez.DataSource = tb;
         }
 
+        /////////////////// BOTÕES DO FORM ///////////////////
+        
+        private void btnListarPartidas_Click(object sender, EventArgs e)
+        {
+            ListarPartidas();
+        }
+
+        private void btnListarJogadores_Click(object sender, EventArgs e)
+        {
+            ListarJogadores();
+        }
+
+        private void btnCriarPartida_Click(object sender, EventArgs e)
+        {
+            CriarPartida();
+        }
+
+        private void btnEntrarPartida_Click(object sender, EventArgs e)
+        {
+            EntrarPartida();
+        }
+
+        private void btnIniciarJogo_Click(object sender, EventArgs e)
+        {
+            IniciarJogo();
+            tmrIniciar.Enabled = true; // habilitando o timer
+        }
+
+        private void btnExibirCartas_Click(object sender, EventArgs e)
+        {
+            ExibirCartas();
+        }
+
+        private void btnVerificarVez_Click(object sender, EventArgs e)
+        {
+            VerificarVez();
+        }
+
+        private void btnColocarPersonagem_Click(object sender, EventArgs e)
+        {
+            string setorStr = txtSetor.Text;
+            int setor = Convert.ToInt32(setorStr);
+            string personagem = txtPersonagem.Text;
+
+            ColocarPersonagem(setor, personagem);
+        }
+
+        private void btnPromoverPersonagem_Click(object sender, EventArgs e)
+        {
+            PromoverPersonagem();
+        }
+
+        private void btnVotar_Click(object sender, EventArgs e)
+        {
+            Votar();
+        }
+
+        private void btnExibirVotacao_Click(object sender, EventArgs e)
+        {
+            ExibirVotacao();
+        }
+
+        private void btnVerificarVezTabuleiro_Click(object sender, EventArgs e)
+        {
+            VerificarVezTabuleiro();
+        }
 
         /////////////////// TIMER /////////////////
 
         private void tmrIniciar_Tick(object sender, EventArgs e)
         {
             tmrIniciar.Enabled = false; // desabilitando o timer
-            
-            var resultado = Lobby.VerificarVez(Convert.ToInt32(txtIdPartida.Text));
-            lobby.JogadorDaVez = resultado.idJogador;  // atualiza a vez
 
-            int meuID = Convert.ToInt32(lobby.MeuID); // id de entrada
+            // pegar o estado do tabuleiro pra colocar o personagem a partir dele;
+            // talvez pensar na carta de influência de cada personagem pra estratégia;
 
-            if (lobby.JogadorDaVez == meuID)
+            var estadoTabuleiro = tb;
+
+            if (lobby.JogadorDaVez == lobby.MeuID)
             {
                 int setor = 1;
                 string personagem = "A";

@@ -11,7 +11,7 @@ namespace sistema_autonomo_2._0
     class Lobby
     {
         int jogadorDaVez;
-        string meuID;
+        int meuID;
 
         public int JogadorDaVez
         {
@@ -19,7 +19,7 @@ namespace sistema_autonomo_2._0
             set { jogadorDaVez = value; }
         }
 
-        public string MeuID
+        public int MeuID
         {
             get { return meuID; }
             set { meuID = value; }

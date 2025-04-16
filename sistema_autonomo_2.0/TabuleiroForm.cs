@@ -70,14 +70,27 @@ namespace sistema_autonomo_2._0
             return null;
         }
 
+        public void LimparPersonagens()
+        {
+            foreach (var panel in Personagens)
+            {
+                if (panel.Parent != null)
+                {
+                    panel.Parent.Controls.Remove(panel);
+                }
+
+                panel.Visible = false;
+            }
+        }
+
+        void HideTabuleiro(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
+        }
+
         public void AdicionarPersonagem(int setor, string personagem)
         {
-            //Panel pnlPersonagem = new Panel();
-            //pnlPersonagem.Size = new Size(40, 40);
-            //pnlPersonagem.BackColor = Color.BlueViolet;
-            //pnlPersonagem.Location = new Point(3, 6);
-            //pnlA.Controls.Add(pnlPersonagem);
-
             Panel pnlSetor = null;
 
             if (personagem == "a" || personagem == "A")
@@ -697,24 +710,6 @@ namespace sistema_autonomo_2._0
 
         }
 
-        public void LimparPersonagens()
-        {
-            foreach (var panel in Personagens)
-            {
-                if (panel.Parent != null)
-                {
-                    panel.Parent.Controls.Remove(panel);
-                }
-
-                panel.Visible = false; 
-            }
-        }
-
-        void HideTabuleiro(object sender, FormClosingEventArgs e)
-        {
-            e.Cancel = true;
-            this.Hide();
-        }
 
     }
 }
