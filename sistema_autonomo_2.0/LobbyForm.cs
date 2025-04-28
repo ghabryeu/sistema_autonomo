@@ -15,8 +15,9 @@ namespace sistema_autonomo_2._0
     {
         //VerificarErro verificarErro = new VerificarErro();
         TabuleiroForm tabuleiro;
-        List<Tabuleiro> tb;
+        List<Tabuleiro> estadoDoTabuleiro;
         Lobby lobby = new Lobby();
+        Jogador jogador = new Jogador();
 
         public btnTabuleiro()
         {
@@ -135,8 +136,8 @@ namespace sistema_autonomo_2._0
             //string personagem = txtPersonagem.Text;
 
             // tb -> lista declarada no início
-            tb = Lobby.ColocarPersonagem(id, senhaJogador, setor, personagem);
-            dgvVerificarVez.DataSource = tb;
+            estadoDoTabuleiro = Lobby.ColocarPersonagem(id, senhaJogador, setor, personagem);
+            dgvVerificarVez.DataSource = estadoDoTabuleiro;
 
             // abre segundo form
             if (tabuleiro == null || tabuleiro.IsDisposed)
@@ -146,18 +147,18 @@ namespace sistema_autonomo_2._0
             }
 
             // exibindo graficamente
-            foreach (var t in tb)
+            foreach (var t in estadoDoTabuleiro)
             {
                 tabuleiro.AdicionarPersonagem(t.Setor, t.Personagem);
             }
         }
 
-        public void PromoverPersonagem()
+        public void PromoverPersonagem(string personagem)
         {
             string idJogador = txtIdJogador.Text;
             int id = Convert.ToInt32(idJogador);
             string senhaJogador = txtSenhaJogador.Text;
-            string personagem = txtPersonagem.Text;
+            //string personagem = txtPersonagem.Text;
 
             string idPartida = txtIdPartida.Text;
             int idPtd = Convert.ToInt32(idPartida);
@@ -166,13 +167,11 @@ namespace sistema_autonomo_2._0
 
             dgvVerificarVez.DataSource = Lobby.PromoverPersonagem(id, senhaJogador, personagem);
 
-            tb = Lobby.RetornarEstadoTabuleiro(idPtd);
+            estadoDoTabuleiro = Lobby.RetornarEstadoTabuleiro(idPtd);
 
-            foreach (var t in tb)
+            foreach (var t in estadoDoTabuleiro)
             {
                 tabuleiro.AdicionarPersonagem(t.Setor, t.Personagem);
-                label13.Text = t.Setor.ToString();
-                label12.Text = t.Personagem;
             }
         }
 
@@ -190,13 +189,11 @@ namespace sistema_autonomo_2._0
 
             Jogo.Votar(id, senhaJogador, voto);
 
-            tb = Lobby.RetornarEstadoTabuleiro(idPtd);
+            estadoDoTabuleiro = Lobby.RetornarEstadoTabuleiro(idPtd);
 
-            foreach (var t in tb)
+            foreach (var t in estadoDoTabuleiro)
             {
                 tabuleiro.AdicionarPersonagem(t.Setor, t.Personagem);
-                label13.Text = t.Setor.ToString();
-                label12.Text = t.Personagem;
             }
         }
 
@@ -221,11 +218,106 @@ namespace sistema_autonomo_2._0
                 tabuleiro.Show();
             }
 
-            dgvVerificarVez.DataSource = tb;
+            dgvVerificarVez.DataSource = estadoDoTabuleiro;
+        }
+
+        // ajustes: verificar os personagens que já foram colocados no tabuleiro
+        // pelos outros jogadores e não estão mais disponíveis
+        public void AutoColocarPersonagem()
+        {
+            var nomes = Personagem.Nomes;
+            var nomesDisponiveis = Personagem.PersonagensDisponiveis;
+            var nomesUsados = Personagem.PersonagensUsados;
+
+            try
+            {
+                nomesDisponiveis.Clear();
+
+                foreach (var nome in nomes)
+                {
+                    if (!nomesUsados.Contains(nome))
+                    {
+                        nomesDisponiveis.Add(nome);
+                    }
+                }
+
+                if (nomesDisponiveis.Count > 0)
+                {
+                    Random random = new Random();
+
+                    int setor = random.Next(1, 5);
+
+                    int indiceAleatorio = random.Next(0, nomesDisponiveis.Count);
+                    string personagemSelecionado = nomesDisponiveis[indiceAleatorio];
+
+                    if (!string.IsNullOrEmpty(personagemSelecionado) && !nomesUsados.Contains(personagemSelecionado))
+                    {
+                        nomesUsados.Add(personagemSelecionado);
+                        nomesDisponiveis.Remove(personagemSelecionado);
+
+                        ColocarPersonagem(setor, personagemSelecionado);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Personagem não válido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void AutoPromoverPersonagem()
+        {
+            var nomes = Personagem.Nomes;
+            var nomesDisponiveis = Personagem.PersonagensDisponiveis;
+            var nomesUsados = Personagem.PersonagensUsados;
+
+            try
+            {
+                nomesDisponiveis.Clear();
+
+                foreach (var nome in nomes)
+                {
+                    if (!nomesUsados.Contains(nome))
+                    {
+                        nomesDisponiveis.Add(nome);
+                    }
+                }
+
+                if(nomesDisponiveis.Count > 0)
+                {
+                    // preciso percorrer o estado do tabuleiro
+                    // e verificar quem pode ser promovido
+                    // lembrar: o personagem só pode ser promovido caso o setor acima tenha menos de 4 personagens nele
+
+                    Random random = new Random();
+                    int indiceAleatorio = random.Next(0, nomesDisponiveis.Count);
+                    string personagemSelecionado = nomesDisponiveis[indiceAleatorio];
+
+                    if (!string.IsNullOrEmpty(personagemSelecionado) && !nomesUsados.Contains(personagemSelecionado))
+                    {
+                        nomesUsados.Add(personagemSelecionado);
+                        nomesDisponiveis.Remove(personagemSelecionado);
+
+                        PromoverPersonagem(personagemSelecionado);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Personagem não válido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /////////////////// BOTÕES DO FORM ///////////////////
-        
+
         private void btnListarPartidas_Click(object sender, EventArgs e)
         {
             ListarPartidas();
@@ -273,7 +365,8 @@ namespace sistema_autonomo_2._0
 
         private void btnPromoverPersonagem_Click(object sender, EventArgs e)
         {
-            PromoverPersonagem();
+            string personagem = txtPersonagem.Text;
+            PromoverPersonagem(personagem);
         }
 
         private void btnVotar_Click(object sender, EventArgs e)
@@ -300,14 +393,30 @@ namespace sistema_autonomo_2._0
             // pegar o estado do tabuleiro pra colocar o personagem a partir dele;
             // talvez pensar na carta de influência de cada personagem pra estratégia;
 
-            var estadoTabuleiro = tb;
+            VerificarVez();
 
             if (lobby.JogadorDaVez == lobby.MeuID)
             {
-                int setor = 1;
-                string personagem = "A";
-                ColocarPersonagem(setor, personagem);
+                //if(jogador.FaseAtual != '\0')
+                //{
+                //    if (jogador.FaseAtual == 'S')
+                //    {
+                //        AutoColocarPersonagem();
+                //    }
+                //    else
+                //    {
+                //        AutoPromoverPersonagem();
+                //    }
+                //}
+                //else
+                //{
+                //    MessageBox.Show("FaseAtual não definida!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //}
+
+                AutoColocarPersonagem();
             }
+
+            VerificarVez();
 
             tmrIniciar.Enabled = true; // habilitando o timer novamente
         }

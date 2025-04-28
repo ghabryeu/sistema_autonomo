@@ -78,8 +78,6 @@
             this.btnVotar = new System.Windows.Forms.Button();
             this.btnExibirVotacao = new System.Windows.Forms.Button();
             this.btnVerificarVezTabuleiro = new System.Windows.Forms.Button();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.tmrIniciar = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarPartidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarJogadores)).BeginInit();
@@ -539,24 +537,6 @@
             this.btnVerificarVezTabuleiro.UseVisualStyleBackColor = true;
             this.btnVerificarVezTabuleiro.Click += new System.EventHandler(this.btnVerificarVezTabuleiro_Click);
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(556, 415);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(41, 13);
-            this.label12.TabIndex = 52;
-            this.label12.Text = "label12";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(556, 444);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(41, 13);
-            this.label13.TabIndex = 53;
-            this.label13.Text = "label13";
-            // 
             // tmrIniciar
             // 
             this.tmrIniciar.Interval = 5000;
@@ -567,8 +547,6 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 498);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.label12);
             this.Controls.Add(this.btnVerificarVezTabuleiro);
             this.Controls.Add(this.btnExibirVotacao);
             this.Controls.Add(this.btnVotar);
@@ -679,8 +657,6 @@
         private System.Windows.Forms.Button btnVotar;
         private System.Windows.Forms.Button btnExibirVotacao;
         private System.Windows.Forms.Button btnVerificarVezTabuleiro;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Timer tmrIniciar;
     }
 }

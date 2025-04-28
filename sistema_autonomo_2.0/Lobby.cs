@@ -134,7 +134,7 @@ namespace sistema_autonomo_2._0
             return (idJogador, status, rodada, faseAtual);
         }
 
-        // conseguir devolver o estado do tabuleiro depois da promoção
+        // função: conseguir devolver o estado do tabuleiro depois da promoção
         public static List<Tabuleiro> RetornarEstadoTabuleiro(int idPartida)
         {
             string retorno = Jogo.VerificarVez(idPartida);

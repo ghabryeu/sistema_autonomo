@@ -12,6 +12,9 @@ namespace sistema_autonomo_2._0
         int id;
         string voto;
         int votoRestante;
+        public static List<string> Nomes { get; set; } = new List<string> {"A", "B", "C", "D", "E", "G", "H", "K", "L", "M", "Q", "R", "T"};
+        public static List<string> PersonagensUsados { get; set; } = new List<string>();
+        public static List<string> PersonagensDisponiveis { get; set; } = new List<string>();
 
         public string Inicial
         {
