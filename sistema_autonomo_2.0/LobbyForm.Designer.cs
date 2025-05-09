@@ -79,6 +79,7 @@
             this.btnExibirVotacao = new System.Windows.Forms.Button();
             this.btnVerificarVezTabuleiro = new System.Windows.Forms.Button();
             this.tmrIniciar = new System.Windows.Forms.Timer(this.components);
+            this.btnTimer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarPartidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarJogadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVerificarVez)).BeginInit();
@@ -360,7 +361,7 @@
             this.btnIniciarJogo.Name = "btnIniciarJogo";
             this.btnIniciarJogo.Size = new System.Drawing.Size(75, 35);
             this.btnIniciarJogo.TabIndex = 32;
-            this.btnIniciarJogo.Text = "Iniciar";
+            this.btnIniciarJogo.Text = "Iniciar Partida";
             this.btnIniciarJogo.UseVisualStyleBackColor = true;
             this.btnIniciarJogo.Click += new System.EventHandler(this.btnIniciarJogo_Click);
             // 
@@ -542,11 +543,22 @@
             this.tmrIniciar.Interval = 5000;
             this.tmrIniciar.Tick += new System.EventHandler(this.tmrIniciar_Tick);
             // 
+            // btnTimer
+            // 
+            this.btnTimer.Location = new System.Drawing.Point(483, 365);
+            this.btnTimer.Name = "btnTimer";
+            this.btnTimer.Size = new System.Drawing.Size(74, 35);
+            this.btnTimer.TabIndex = 52;
+            this.btnTimer.Text = "Iniciar Timer";
+            this.btnTimer.UseVisualStyleBackColor = true;
+            this.btnTimer.Click += new System.EventHandler(this.btnTimer_Click);
+            // 
             // btnTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 498);
+            this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.btnVerificarVezTabuleiro);
             this.Controls.Add(this.btnExibirVotacao);
             this.Controls.Add(this.btnVotar);
@@ -658,6 +670,7 @@
         private System.Windows.Forms.Button btnExibirVotacao;
         private System.Windows.Forms.Button btnVerificarVezTabuleiro;
         private System.Windows.Forms.Timer tmrIniciar;
+        private System.Windows.Forms.Button btnTimer;
     }
 }
 

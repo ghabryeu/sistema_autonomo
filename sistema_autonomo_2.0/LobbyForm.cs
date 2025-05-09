@@ -93,7 +93,7 @@ namespace sistema_autonomo_2._0
             lblJogadorInicial.Text = jogador;
         }
 
-        public void ExibirCartas()
+        public string ExibirCartas()
         {
             string idJogador = txtIdJogador.Text;
             int id = Convert.ToInt32(idJogador);
@@ -102,6 +102,8 @@ namespace sistema_autonomo_2._0
             string cartas = Lobby.ExibirCartas(id, senhaJogador);
 
             lblCartas.Text = cartas;
+
+            return cartas;
         }
 
         public void VerificarVez()
@@ -112,15 +114,14 @@ namespace sistema_autonomo_2._0
             var resultado = Lobby.VerificarVez(id);
             lobby.JogadorDaVez = resultado.idJogador; // salva id jogador da vez
 
+            jogador.Id = resultado.idJogador;
+            jogador.Status = resultado.status;
+            jogador.Rodada = resultado.rodada;
+            jogador.FaseAtual = resultado.faseAtual;
+
             List<Jogador> lista = new List<Jogador>
             {
-                new Jogador
-                {
-                    Id = resultado.idJogador,
-                    Status = resultado.status,
-                    Rodada = resultado.rodada,
-                    FaseAtual = resultado.faseAtual
-                }
+                jogador
             };
 
             dgvVerificarVez.DataSource = lista;
@@ -135,7 +136,6 @@ namespace sistema_autonomo_2._0
             //int setor = Convert.ToInt32(setorStr);
             //string personagem = txtPersonagem.Text;
 
-            // tb -> lista declarada no início
             estadoDoTabuleiro = Lobby.ColocarPersonagem(id, senhaJogador, setor, personagem);
             dgvVerificarVez.DataSource = estadoDoTabuleiro;
 
@@ -271,49 +271,50 @@ namespace sistema_autonomo_2._0
 
         public void AutoPromoverPersonagem()
         {
+            // tabuleiro pra verificar onde cada personagem está
+            string idPartida = txtIdPartida.Text;
+            int idPtd = Convert.ToInt32(idPartida);
+            estadoDoTabuleiro = Lobby.RetornarEstadoTabuleiro(idPtd);
+
+            // lista de personagens de cada jogador
+            string cartas = ExibirCartas();
+            string[] meusPersonagens = cartas.Split(',');
+
             var nomes = Personagem.Nomes;
-            var nomesDisponiveis = Personagem.PersonagensDisponiveis;
-            var nomesUsados = Personagem.PersonagensUsados;
 
             try
             {
-                nomesDisponiveis.Clear();
+                // LISTA DE INFLUENCIA = A, B, C
+                // ESTADO DO TABULEIRO = 1:A, 2:B, 4:C
 
-                foreach (var nome in nomes)
+                // PROMOVER C, POIS É O MAIS PERTO DO REI
+
+                // SE PERSONAGEM EM estadoDoTabuleiro PERTENCE À cartas
+                // ENTAO chama função promover
+
+                // SE NAO ESTIVER PROCURAR O QUE ESTÁ MAIS PRÓXIMO DO REI 
+                // setores: 0, 1, 2, 3, 4, 5, 10 (sendo 10 o rei)
+
+                Random random = new Random();
+
+                int indice = random.Next(0, nomes.Count);
+                string personagemSelecionado = nomes[indice];
+
+                if(!string.IsNullOrEmpty(personagemSelecionado)){
+
+                    PromoverPersonagem(personagemSelecionado);
+                }
+                else
                 {
-                    if (!nomesUsados.Contains(nome))
-                    {
-                        nomesDisponiveis.Add(nome);
-                    }
+                    MessageBox.Show("Personagem não válido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
 
-                if(nomesDisponiveis.Count > 0)
-                {
-                    // preciso percorrer o estado do tabuleiro
-                    // e verificar quem pode ser promovido
-                    // lembrar: o personagem só pode ser promovido caso o setor acima tenha menos de 4 personagens nele
-
-                    Random random = new Random();
-                    int indiceAleatorio = random.Next(0, nomesDisponiveis.Count);
-                    string personagemSelecionado = nomesDisponiveis[indiceAleatorio];
-
-                    if (!string.IsNullOrEmpty(personagemSelecionado) && !nomesUsados.Contains(personagemSelecionado))
-                    {
-                        nomesUsados.Add(personagemSelecionado);
-                        nomesDisponiveis.Remove(personagemSelecionado);
-
-                        PromoverPersonagem(personagemSelecionado);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Personagem não válido", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
-                }
             }
-            catch (Exception ex)
+            catch
             {
-                MessageBox.Show($"Erro: {ex.Message}", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Erro ao promover personagem", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         /////////////////// BOTÕES DO FORM ///////////////////
@@ -341,7 +342,6 @@ namespace sistema_autonomo_2._0
         private void btnIniciarJogo_Click(object sender, EventArgs e)
         {
             IniciarJogo();
-            tmrIniciar.Enabled = true; // habilitando o timer
         }
 
         private void btnExibirCartas_Click(object sender, EventArgs e)
@@ -386,6 +386,11 @@ namespace sistema_autonomo_2._0
 
         /////////////////// TIMER /////////////////
 
+        private void btnTimer_Click(object sender, EventArgs e)
+        {
+            tmrIniciar.Enabled = true; // habilitando o timer
+        }
+
         private void tmrIniciar_Tick(object sender, EventArgs e)
         {
             tmrIniciar.Enabled = false; // desabilitando o timer
@@ -397,23 +402,15 @@ namespace sistema_autonomo_2._0
 
             if (lobby.JogadorDaVez == lobby.MeuID)
             {
-                //if(jogador.FaseAtual != '\0')
-                //{
-                //    if (jogador.FaseAtual == 'S')
-                //    {
-                //        AutoColocarPersonagem();
-                //    }
-                //    else
-                //    {
-                //        AutoPromoverPersonagem();
-                //    }
-                //}
-                //else
-                //{
-                //    MessageBox.Show("FaseAtual não definida!", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //}
-
-                AutoColocarPersonagem();
+                switch (jogador.FaseAtual)
+                {
+                    case 'S':
+                        AutoColocarPersonagem();
+                        break;
+                    case 'P':
+                        AutoPromoverPersonagem();
+                        break;
+                }
             }
 
             VerificarVez();
