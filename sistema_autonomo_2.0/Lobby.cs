@@ -79,6 +79,51 @@ namespace sistema_autonomo_2._0
             return listaJogadores;
         }
 
+        public static List<Setor> ListarSetores()
+        {
+            string retorno = Jogo.ListarSetores();
+            retorno = retorno.Replace("\r", "");
+            retorno = retorno.Substring(0, retorno.Length - 1);
+            string[] setores = retorno.Split('\n');
+            List<Setor> listaSetores = new List<Setor>();
+
+            for (int i = 0; i < setores.Length; i++)
+            {
+                string[] dados = setores[i].Split(',');
+
+                Setor s = new Setor();
+
+                s.IdSetor = Convert.ToInt32(dados[0]);
+                s.NomeSetor = dados[1];
+
+                listaSetores.Add(s);
+            }
+
+            return listaSetores;
+        }
+
+        public static List<Personagem> ListarPersonagens()
+        {
+            string retorno = Jogo.ListarPersonagens();
+            retorno = retorno.Replace("\r", "");
+            retorno = retorno.Substring(0, retorno.Length - 1);
+            string[] personagens = retorno.Split('\n');
+            List<Personagem> listaPersonagens = new List<Personagem>();
+
+            for (int i = 0; i < personagens.Length; i++)
+            {
+                string[] dados = personagens[i].Split(',');
+
+                Personagem p = new Personagem();
+                
+                p.Nome = dados[0];
+
+                listaPersonagens.Add(p);
+            }
+
+            return listaPersonagens;
+        }
+
         public static int CriarPartida(string nomePartida, string senha, string nomeGrupo)
         {
             string retorno = Jogo.CriarPartida(nomePartida, senha, nomeGrupo);
@@ -231,7 +276,7 @@ namespace sistema_autonomo_2._0
 
                 Personagem p = new Personagem();
 
-                p.Inicial = dados[0];
+                p.Nome = dados[0];
                 p.ID = Convert.ToInt32(dados[1]);
                 p.Voto = dados[2];
 
@@ -241,5 +286,25 @@ namespace sistema_autonomo_2._0
             return votoPersonagem;
         }
 
+        public static List<Historico> ConsultarHistorico(int idPartida, bool formato, bool completo)
+        {
+            string retorno = Jogo.ConsultarHistorico(idPartida, formato, completo);
+            retorno = retorno.Replace("\r", "");
+            retorno = retorno.Substring(0, retorno.Length - 1);
+            string[] historico = retorno.Split('\n');
+            List<Historico> listaHistorico = new List<Historico>();
+
+            for (int i = 0; i < historico.Length; i++)
+            {
+                string[] dados = historico[i].Split(',');
+
+                Historico h = new Historico();
+
+                h.Acao = dados[0];
+
+                listaHistorico.Add(h);
+            }
+            return listaHistorico;
+        }
     }
 }

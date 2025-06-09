@@ -50,7 +50,7 @@ namespace sistema_autonomo_2._0
 
         public bool VerificarIdPartida(string retorno)
         {
-            if (retorno == null)
+            if (string.IsNullOrEmpty(retorno))
             {
                 MessageBox.Show("Nenhuma partida foi selecionada", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

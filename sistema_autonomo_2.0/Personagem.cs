@@ -8,18 +8,18 @@ namespace sistema_autonomo_2._0
 {
     class Personagem
     {
-        string personagem;
+        string nome;
         int id;
         string voto;
-        int votoRestante;
+        int votoRestante = 3;
         public static List<string> Nomes { get; set; } = new List<string> {"A", "B", "C", "D", "E", "G", "H", "K", "L", "M", "Q", "R", "T"};
         public static List<string> PersonagensUsados { get; set; } = new List<string>();
         public static List<string> PersonagensDisponiveis { get; set; } = new List<string>();
 
-        public string Inicial
+        public string Nome
         {
-            get { return personagem; }
-            set { personagem = value; }
+            get { return nome; }
+            set { nome = value; }
         }
 
         public int ID

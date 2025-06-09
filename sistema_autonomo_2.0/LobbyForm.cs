@@ -13,11 +13,14 @@ namespace sistema_autonomo_2._0
 {
     public partial class btnTabuleiro: Form
     {
-        //VerificarErro verificarErro = new VerificarErro();
+        VerificarErro verificarErro = new VerificarErro();
         TabuleiroForm tabuleiro;
+        Setor setor;
         List<Tabuleiro> estadoDoTabuleiro;
         Lobby lobby = new Lobby();
         Jogador jogador = new Jogador();
+        Random random = new Random();
+        Personagem personagem = new Personagem();
 
         public btnTabuleiro()
         {
@@ -35,8 +38,38 @@ namespace sistema_autonomo_2._0
         public void ListarJogadores()
         {
             string idPartida = txtIdPartida.Text;
+            
+            if(!verificarErro.VerificarIdPartida(idPartida))
+            {
+                return;
+            }
+
             int id = Convert.ToInt32(idPartida);
             dgvListarJogadores.DataSource = Lobby.ListarJogador(id);
+        }
+
+        public void ListarSetores()
+        {
+            lstSetores.Items.Clear();
+
+            List<Setor> setores = Lobby.ListarSetores();
+
+            foreach (Setor setor in setores)
+            {
+                lstSetores.Items.Add($"{setor.IdSetor}: {setor.NomeSetor}");
+            }
+        }
+
+        public void ListarPersonagens()
+        {
+            lstPersonagens.Items.Clear();
+
+            List<Personagem> personagens = Lobby.ListarPersonagens();
+
+            foreach (Personagem personagem in personagens)
+            {
+                lstPersonagens.Items.Add($"{personagem.Nome}");
+            }
         }
 
         public void CriarPartida()
@@ -45,6 +78,16 @@ namespace sistema_autonomo_2._0
             string nomePartida = txtNomePartida.Text;
             string senha = txtSenhaPartida.Text;
             string nomeGrupo = "Juízes de Common Law";
+
+            if (!verificarErro.VerificarNome(nomePartida))
+            {
+                return;
+            }
+
+            if (!verificarErro.VerificarSenha(senha))
+            {
+                return;
+            }
 
             int idPartida = Lobby.CriarPartida(nomePartida, senha, nomeGrupo);
             string id = idPartida.ToString();
@@ -58,10 +101,20 @@ namespace sistema_autonomo_2._0
         {
             // pegando informações do forms
             string idPartida = txtIdPartida.Text;
-            int id = Convert.ToInt32(idPartida);
             string nomeJogador = txtNomeJogador.Text;
             string senhaPartida = txtSenhaPartida.Text;
 
+            if(!verificarErro.VerificarNome(nomeJogador))
+            {
+                return;
+            }
+
+            if (!verificarErro.VerificarIdPartida(idPartida))
+            {
+                return;
+            }
+
+            int id = Convert.ToInt32(idPartida);
             // gerador senha por id jogador
             var idSenhaJogador = Lobby.EntrarPartida(id, nomeJogador, senhaPartida);
 
@@ -114,8 +167,21 @@ namespace sistema_autonomo_2._0
             var resultado = Lobby.VerificarVez(id);
             lobby.JogadorDaVez = resultado.idJogador; // salva id jogador da vez
 
+            // pegando nome do jogador
+            List<Jogador> listaJogadores = Lobby.ListarJogador(id);
+            string nome = "";
+            foreach(Jogador j in listaJogadores)
+            {
+                if (j.Id == resultado.idJogador)
+                {
+                    nome = j.Nome;
+                    break;
+                }
+            }
+
             jogador.Id = resultado.idJogador;
             jogador.Status = resultado.status;
+            jogador.Nome = nome;
             jogador.Rodada = resultado.rodada;
             jogador.FaseAtual = resultado.faseAtual;
 
@@ -135,6 +201,13 @@ namespace sistema_autonomo_2._0
             //string setorStr = txtSetor.Text;
             //int setor = Convert.ToInt32(setorStr);
             //string personagem = txtPersonagem.Text;
+            
+            int rodadaAnterior = -1;
+            if(jogador.Rodada != rodadaAnterior && tabuleiro != null)
+            {
+                tabuleiro.LimparPersonagens();
+                rodadaAnterior = jogador.Rodada;
+            }
 
             estadoDoTabuleiro = Lobby.ColocarPersonagem(id, senhaJogador, setor, personagem);
             dgvVerificarVez.DataSource = estadoDoTabuleiro;
@@ -175,12 +248,12 @@ namespace sistema_autonomo_2._0
             }
         }
 
-        public void Votar()
+        public void Votar(string voto)
         {
             string idJogador = txtIdJogador.Text;
             int id = Convert.ToInt32(idJogador);
             string senhaJogador = txtSenhaJogador.Text;
-            string voto = txtVotar.Text;
+            //string voto = txtVotar.Text;
 
             string idPartida = txtIdPartida.Text;
             int idPtd = Convert.ToInt32(idPartida);
@@ -197,7 +270,7 @@ namespace sistema_autonomo_2._0
             }
         }
 
-        public void ExibirVotacao()
+        public void ExibirUltimaVotacao()
         {
             string idPartida = txtIdPartida.Text;
             int id = Convert.ToInt32(idPartida);
@@ -221,6 +294,17 @@ namespace sistema_autonomo_2._0
             dgvVerificarVez.DataSource = estadoDoTabuleiro;
         }
 
+        public void ConsultarHistorico()
+        {
+            string idPartida = txtIdPartida.Text;
+            int id = Convert.ToInt32(idPartida);
+
+            bool formatado = chkHistorico.Checked;
+            bool completo = !chkHistorico.Checked;
+
+            dgvVerificarVez.DataSource = Lobby.ConsultarHistorico(id, formatado,  completo);
+        }
+
         // ajustes: verificar os personagens que já foram colocados no tabuleiro
         // pelos outros jogadores e não estão mais disponíveis
         public void AutoColocarPersonagem()
@@ -229,8 +313,22 @@ namespace sistema_autonomo_2._0
             var nomesDisponiveis = Personagem.PersonagensDisponiveis;
             var nomesUsados = Personagem.PersonagensUsados;
 
+            string idPartida = txtIdPartida.Text;
+            int idPtd = Convert.ToInt32(idPartida);
+            estadoDoTabuleiro = Lobby.RetornarEstadoTabuleiro(idPtd);
+
             try
             {
+                nomesUsados.Clear();
+
+                foreach (var t in estadoDoTabuleiro)
+                {
+                    if (!nomesUsados.Contains(t.Personagem))
+                    {
+                        nomesUsados.Add(t.Personagem);
+                    }
+                }
+
                 nomesDisponiveis.Clear();
 
                 foreach (var nome in nomes)
@@ -243,18 +341,20 @@ namespace sistema_autonomo_2._0
 
                 if (nomesDisponiveis.Count > 0)
                 {
-                    Random random = new Random();
-
                     int setor = random.Next(1, 5);
 
+                    
                     int indiceAleatorio = random.Next(0, nomesDisponiveis.Count);
                     string personagemSelecionado = nomesDisponiveis[indiceAleatorio];
 
                     if (!string.IsNullOrEmpty(personagemSelecionado) && !nomesUsados.Contains(personagemSelecionado))
                     {
+                        // add personagem de setor aqui //
+
                         nomesUsados.Add(personagemSelecionado);
                         nomesDisponiveis.Remove(personagemSelecionado);
 
+                        label12.Text = nomesDisponiveis.Count.ToString();
                         ColocarPersonagem(setor, personagemSelecionado);
                     }
                     else
@@ -276,33 +376,52 @@ namespace sistema_autonomo_2._0
             int idPtd = Convert.ToInt32(idPartida);
             estadoDoTabuleiro = Lobby.RetornarEstadoTabuleiro(idPtd);
 
-            // lista de personagens de cada jogador
-            string cartas = ExibirCartas();
-            string[] meusPersonagens = cartas.Split(',');
-
             var nomes = Personagem.Nomes;
 
             try
             {
-                // LISTA DE INFLUENCIA = A, B, C
-                // ESTADO DO TABULEIRO = 1:A, 2:B, 4:C
-
-                // PROMOVER C, POIS É O MAIS PERTO DO REI
-
-                // SE PERSONAGEM EM estadoDoTabuleiro PERTENCE À cartas
-                // ENTAO chama função promover
-
-                // SE NAO ESTIVER PROCURAR O QUE ESTÁ MAIS PRÓXIMO DO REI 
-                // setores: 0, 1, 2, 3, 4, 5, 10 (sendo 10 o rei)
-
-                Random random = new Random();
 
                 int indice = random.Next(0, nomes.Count);
                 string personagemSelecionado = nomes[indice];
 
                 if(!string.IsNullOrEmpty(personagemSelecionado)){
 
-                    PromoverPersonagem(personagemSelecionado);
+                    // setor atual do personagem
+                    int setorAtual = -1;
+                    foreach (var t in estadoDoTabuleiro)
+                    {
+                        if (t.Personagem == personagemSelecionado)
+                        {
+                            setorAtual = t.Setor;
+                            break;
+                        }
+                    }
+
+                    if (setorAtual == -1)
+                    {
+                        MessageBox.Show("Personagem não está no tabuleiro", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
+                    int setorPromocao = setorAtual + 1;
+
+                    // quantos personagens estão no próximo setor
+                    int quantidadeNoSetor = 0;
+                    foreach (var t in estadoDoTabuleiro)
+                    {
+                        if (t.Setor == setorPromocao)
+                            quantidadeNoSetor++;
+                    }
+
+                    if (quantidadeNoSetor < 4)
+                    {
+                        PromoverPersonagem(personagemSelecionado);
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Limite atingido no setor {setorPromocao}", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
                 }
                 else
                 {
@@ -315,6 +434,87 @@ namespace sistema_autonomo_2._0
                 MessageBox.Show("Erro ao promover personagem", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        public void AutoVotar() 
+        {
+            // tabuleiro pra verificar onde cada personagem está
+            string idPartida = txtIdPartida.Text;
+            int idPtd = Convert.ToInt32(idPartida);
+            estadoDoTabuleiro = Lobby.RetornarEstadoTabuleiro(idPtd);
+
+            // usar exibir cartas para votar
+            // lista de personagens de cada jogador
+            string cartas = ExibirCartas();
+            string[] meusPersonagens = cartas.Split(',');
+
+            string personagemSetorRei = null;
+            foreach (var t in estadoDoTabuleiro)
+            {
+                if (t.Setor == 10)
+                {
+                    personagemSetorRei = t.Personagem;
+                    break;
+                }
+            }
+
+            // comparar com meusPersonagens
+            bool ehMeu = false;
+            foreach (var p in meusPersonagens)
+            {
+                if (p.Trim() == personagemSetorRei)
+                {
+                    ehMeu = true;
+                    break;
+                }
+            }
+
+            // sim ou não
+            string voto;
+            if (ehMeu)
+            {
+                voto = "s";
+            }
+            else
+            {
+                if (personagem.VotoRestante > 0)
+                {
+                    voto = "n";
+                    personagem.VotoRestante--;
+                }
+                else
+                {
+                    voto = "s";
+                }
+            }
+
+            try
+            {
+                Votar(voto);
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao votar", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void AutomatizarAcao()
+        {
+            if (lobby.JogadorDaVez == lobby.MeuID)
+            {
+                switch (jogador.FaseAtual)
+                {
+                    case 'S':
+                        AutoColocarPersonagem();
+                        break;
+                    case 'P':
+                        AutoPromoverPersonagem();
+                        break;
+                    case 'V':
+                        AutoVotar();
+                        break;
+                }
+            }
         }
 
         /////////////////// BOTÕES DO FORM ///////////////////
@@ -332,6 +532,8 @@ namespace sistema_autonomo_2._0
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
             CriarPartida();
+            ListarSetores();
+            ListarPersonagens();
         }
 
         private void btnEntrarPartida_Click(object sender, EventArgs e)
@@ -356,27 +558,27 @@ namespace sistema_autonomo_2._0
 
         private void btnColocarPersonagem_Click(object sender, EventArgs e)
         {
-            string setorStr = txtSetor.Text;
-            int setor = Convert.ToInt32(setorStr);
-            string personagem = txtPersonagem.Text;
+            //string setorStr = txtSetor.Text;
+            //int setor = Convert.ToInt32(setorStr);
+            //string personagem = txtPersonagem.Text;
 
-            ColocarPersonagem(setor, personagem);
+            //ColocarPersonagem(setor, personagem);
         }
 
         private void btnPromoverPersonagem_Click(object sender, EventArgs e)
         {
-            string personagem = txtPersonagem.Text;
-            PromoverPersonagem(personagem);
+            //string personagem = txtPersonagem.Text;
+            //PromoverPersonagem(personagem);
         }
 
         private void btnVotar_Click(object sender, EventArgs e)
         {
-            Votar();
+            //Votar();
         }
 
         private void btnExibirVotacao_Click(object sender, EventArgs e)
         {
-            ExibirVotacao();
+            ExibirUltimaVotacao();
         }
 
         private void btnVerificarVezTabuleiro_Click(object sender, EventArgs e)
@@ -384,38 +586,30 @@ namespace sistema_autonomo_2._0
             VerificarVezTabuleiro();
         }
 
-        /////////////////// TIMER /////////////////
+        private void btnHistorico_Click(object sender, EventArgs e)
+        {
+            ConsultarHistorico();
+        }
 
         private void btnTimer_Click(object sender, EventArgs e)
         {
             tmrIniciar.Enabled = true; // habilitando o timer
         }
 
+
+        /////////////////// TIMER /////////////////
+
         private void tmrIniciar_Tick(object sender, EventArgs e)
         {
             tmrIniciar.Enabled = false; // desabilitando o timer
 
-            // pegar o estado do tabuleiro pra colocar o personagem a partir dele;
-            // talvez pensar na carta de influência de cada personagem pra estratégia;
-
             VerificarVez();
-
-            if (lobby.JogadorDaVez == lobby.MeuID)
-            {
-                switch (jogador.FaseAtual)
-                {
-                    case 'S':
-                        AutoColocarPersonagem();
-                        break;
-                    case 'P':
-                        AutoPromoverPersonagem();
-                        break;
-                }
-            }
-
+            ExibirCartas();
+            AutomatizarAcao();
             VerificarVez();
 
             tmrIniciar.Enabled = true; // habilitando o timer novamente
         }
+
     }
 }

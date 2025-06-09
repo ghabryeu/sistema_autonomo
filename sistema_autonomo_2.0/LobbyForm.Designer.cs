@@ -69,8 +69,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.listBox1 = new System.Windows.Forms.ListBox();
-            this.listBox2 = new System.Windows.Forms.ListBox();
+            this.lstSetores = new System.Windows.Forms.ListBox();
+            this.lstPersonagens = new System.Windows.Forms.ListBox();
             this.label10 = new System.Windows.Forms.Label();
             this.btnPromoverPersonagem = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
@@ -80,6 +80,9 @@
             this.btnVerificarVezTabuleiro = new System.Windows.Forms.Button();
             this.tmrIniciar = new System.Windows.Forms.Timer(this.components);
             this.btnTimer = new System.Windows.Forms.Button();
+            this.btnHistorico = new System.Windows.Forms.Button();
+            this.chkHistorico = new System.Windows.Forms.CheckBox();
+            this.label12 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarPartidas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListarJogadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVerificarVez)).BeginInit();
@@ -435,43 +438,21 @@
             this.label9.TabIndex = 40;
             this.label9.Text = "Setor";
             // 
-            // listBox1
+            // lstSetores
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Items.AddRange(new object[] {
-            "10,Rei",
-            "5,Nobres",
-            "4,Dignatários",
-            "3,Oficiais",
-            "2,Mercadores",
-            "1,Artesãos",
-            "0,Plebeus"});
-            this.listBox1.Location = new System.Drawing.Point(814, 58);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(120, 108);
-            this.listBox1.TabIndex = 41;
+            this.lstSetores.FormattingEnabled = true;
+            this.lstSetores.Location = new System.Drawing.Point(814, 58);
+            this.lstSetores.Name = "lstSetores";
+            this.lstSetores.Size = new System.Drawing.Size(120, 108);
+            this.lstSetores.TabIndex = 41;
             // 
-            // listBox2
+            // lstPersonagens
             // 
-            this.listBox2.FormattingEnabled = true;
-            this.listBox2.Items.AddRange(new object[] {
-            "Adilson Konrad",
-            "Beatriz Paiva",
-            "Claro",
-            "Douglas Baquiao",
-            "Eduardo Takeo",
-            "Guilherme Rey",
-            "Heredia",
-            "Kelly Kiyumi",
-            "Leonardo Takuno",
-            "Mario Toledo",
-            "Quintas",
-            "Ranulfo",
-            "Toshio"});
-            this.listBox2.Location = new System.Drawing.Point(814, 197);
-            this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(120, 186);
-            this.listBox2.TabIndex = 42;
+            this.lstPersonagens.FormattingEnabled = true;
+            this.lstPersonagens.Location = new System.Drawing.Point(814, 197);
+            this.lstPersonagens.Name = "lstPersonagens";
+            this.lstPersonagens.Size = new System.Drawing.Size(120, 186);
+            this.lstPersonagens.TabIndex = 42;
             // 
             // label10
             // 
@@ -553,11 +534,43 @@
             this.btnTimer.UseVisualStyleBackColor = true;
             this.btnTimer.Click += new System.EventHandler(this.btnTimer_Click);
             // 
+            // btnHistorico
+            // 
+            this.btnHistorico.Location = new System.Drawing.Point(581, 365);
+            this.btnHistorico.Name = "btnHistorico";
+            this.btnHistorico.Size = new System.Drawing.Size(138, 38);
+            this.btnHistorico.TabIndex = 53;
+            this.btnHistorico.Text = "Histórico";
+            this.btnHistorico.UseVisualStyleBackColor = true;
+            this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
+            // 
+            // chkHistorico
+            // 
+            this.chkHistorico.AutoSize = true;
+            this.chkHistorico.Location = new System.Drawing.Point(613, 409);
+            this.chkHistorico.Name = "chkHistorico";
+            this.chkHistorico.Size = new System.Drawing.Size(76, 17);
+            this.chkHistorico.TabIndex = 54;
+            this.chkHistorico.Text = "Formatado";
+            this.chkHistorico.UseVisualStyleBackColor = true;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(641, 461);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(41, 13);
+            this.label12.TabIndex = 55;
+            this.label12.Text = "label12";
+            // 
             // btnTabuleiro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(946, 498);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.chkHistorico);
+            this.Controls.Add(this.btnHistorico);
             this.Controls.Add(this.btnTimer);
             this.Controls.Add(this.btnVerificarVezTabuleiro);
             this.Controls.Add(this.btnExibirVotacao);
@@ -566,8 +579,8 @@
             this.Controls.Add(this.label11);
             this.Controls.Add(this.btnPromoverPersonagem);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.listBox2);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.lstPersonagens);
+            this.Controls.Add(this.lstSetores);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
@@ -660,8 +673,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
+        private System.Windows.Forms.ListBox lstSetores;
+        private System.Windows.Forms.ListBox lstPersonagens;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button btnPromoverPersonagem;
         private System.Windows.Forms.Label label11;
@@ -671,6 +684,9 @@
         private System.Windows.Forms.Button btnVerificarVezTabuleiro;
         private System.Windows.Forms.Timer tmrIniciar;
         private System.Windows.Forms.Button btnTimer;
+        private System.Windows.Forms.Button btnHistorico;
+        private System.Windows.Forms.CheckBox chkHistorico;
+        private System.Windows.Forms.Label label12;
     }
 }
 
