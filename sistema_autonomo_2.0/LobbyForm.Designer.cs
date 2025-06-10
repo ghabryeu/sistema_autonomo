@@ -155,12 +155,14 @@
             // 
             // btnCriarPartida
             // 
+            this.btnCriarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnCriarPartida.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnCriarPartida.Location = new System.Drawing.Point(154, 25);
             this.btnCriarPartida.Name = "btnCriarPartida";
             this.btnCriarPartida.Size = new System.Drawing.Size(72, 61);
             this.btnCriarPartida.TabIndex = 8;
             this.btnCriarPartida.Text = "Criar Partida";
-            this.btnCriarPartida.UseVisualStyleBackColor = true;
+            this.btnCriarPartida.UseVisualStyleBackColor = false;
             this.btnCriarPartida.Click += new System.EventHandler(this.btnCriarPartida_Click);
             // 
             // lblIdPartidaCriada
@@ -182,22 +184,26 @@
             // 
             // btnListarPartidas
             // 
+            this.btnListarPartidas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnListarPartidas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnListarPartidas.Location = new System.Drawing.Point(27, 154);
             this.btnListarPartidas.Name = "btnListarPartidas";
             this.btnListarPartidas.Size = new System.Drawing.Size(100, 30);
             this.btnListarPartidas.TabIndex = 11;
             this.btnListarPartidas.Text = "Listar Partidas";
-            this.btnListarPartidas.UseVisualStyleBackColor = true;
+            this.btnListarPartidas.UseVisualStyleBackColor = false;
             this.btnListarPartidas.Click += new System.EventHandler(this.btnListarPartidas_Click);
             // 
             // btnListarJogadores
             // 
+            this.btnListarJogadores.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnListarJogadores.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnListarJogadores.Location = new System.Drawing.Point(27, 316);
             this.btnListarJogadores.Name = "btnListarJogadores";
             this.btnListarJogadores.Size = new System.Drawing.Size(100, 30);
             this.btnListarJogadores.TabIndex = 12;
             this.btnListarJogadores.Text = "Listar Jogadores";
-            this.btnListarJogadores.UseVisualStyleBackColor = true;
+            this.btnListarJogadores.UseVisualStyleBackColor = false;
             this.btnListarJogadores.Click += new System.EventHandler(this.btnListarJogadores_Click);
             // 
             // dgvListarJogadores
@@ -226,12 +232,14 @@
             // 
             // btnEntrarPartida
             // 
+            this.btnEntrarPartida.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnEntrarPartida.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnEntrarPartida.Location = new System.Drawing.Point(438, 23);
             this.btnEntrarPartida.Name = "btnEntrarPartida";
             this.btnEntrarPartida.Size = new System.Drawing.Size(72, 61);
             this.btnEntrarPartida.TabIndex = 16;
             this.btnEntrarPartida.Text = "Entrar na Partida";
-            this.btnEntrarPartida.UseVisualStyleBackColor = true;
+            this.btnEntrarPartida.UseVisualStyleBackColor = false;
             this.btnEntrarPartida.Click += new System.EventHandler(this.btnEntrarPartida_Click);
             // 
             // label2
@@ -300,12 +308,14 @@
             // 
             // btnVerificarVez
             // 
+            this.btnVerificarVez.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnVerificarVez.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVerificarVez.Location = new System.Drawing.Point(457, 152);
             this.btnVerificarVez.Name = "btnVerificarVez";
             this.btnVerificarVez.Size = new System.Drawing.Size(98, 32);
             this.btnVerificarVez.TabIndex = 24;
             this.btnVerificarVez.Text = "Verificar Vez";
-            this.btnVerificarVez.UseVisualStyleBackColor = true;
+            this.btnVerificarVez.UseVisualStyleBackColor = false;
             this.btnVerificarVez.Click += new System.EventHandler(this.btnVerificarVez_Click);
             // 
             // lblJogadorInicial
@@ -360,22 +370,26 @@
             // 
             // btnIniciarJogo
             // 
+            this.btnIniciarJogo.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnIniciarJogo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnIniciarJogo.Location = new System.Drawing.Point(395, 365);
             this.btnIniciarJogo.Name = "btnIniciarJogo";
             this.btnIniciarJogo.Size = new System.Drawing.Size(75, 35);
             this.btnIniciarJogo.TabIndex = 32;
             this.btnIniciarJogo.Text = "Iniciar Partida";
-            this.btnIniciarJogo.UseVisualStyleBackColor = true;
+            this.btnIniciarJogo.UseVisualStyleBackColor = false;
             this.btnIniciarJogo.Click += new System.EventHandler(this.btnIniciarJogo_Click);
             // 
             // btnExibirCartas
             // 
+            this.btnExibirCartas.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnExibirCartas.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnExibirCartas.Location = new System.Drawing.Point(317, 422);
             this.btnExibirCartas.Name = "btnExibirCartas";
             this.btnExibirCartas.Size = new System.Drawing.Size(75, 35);
             this.btnExibirCartas.TabIndex = 33;
             this.btnExibirCartas.Text = "Exibir Cartas";
-            this.btnExibirCartas.UseVisualStyleBackColor = true;
+            this.btnExibirCartas.UseVisualStyleBackColor = false;
             this.btnExibirCartas.Click += new System.EventHandler(this.btnExibirCartas_Click);
             // 
             // lblCartas
@@ -389,12 +403,14 @@
             // 
             // btnColocarPersonagem
             // 
+            this.btnColocarPersonagem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnColocarPersonagem.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnColocarPersonagem.Location = new System.Drawing.Point(702, 39);
             this.btnColocarPersonagem.Name = "btnColocarPersonagem";
             this.btnColocarPersonagem.Size = new System.Drawing.Size(79, 61);
             this.btnColocarPersonagem.TabIndex = 35;
             this.btnColocarPersonagem.Text = "Colocar Personagem";
-            this.btnColocarPersonagem.UseVisualStyleBackColor = true;
+            this.btnColocarPersonagem.UseVisualStyleBackColor = false;
             this.btnColocarPersonagem.Click += new System.EventHandler(this.btnColocarPersonagem_Click);
             // 
             // txtSetor
@@ -465,12 +481,14 @@
             // 
             // btnPromoverPersonagem
             // 
+            this.btnPromoverPersonagem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnPromoverPersonagem.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnPromoverPersonagem.Location = new System.Drawing.Point(702, 107);
             this.btnPromoverPersonagem.Name = "btnPromoverPersonagem";
             this.btnPromoverPersonagem.Size = new System.Drawing.Size(79, 61);
             this.btnPromoverPersonagem.TabIndex = 44;
             this.btnPromoverPersonagem.Text = "Promover Personagem";
-            this.btnPromoverPersonagem.UseVisualStyleBackColor = true;
+            this.btnPromoverPersonagem.UseVisualStyleBackColor = false;
             this.btnPromoverPersonagem.Click += new System.EventHandler(this.btnPromoverPersonagem_Click);
             // 
             // label11
@@ -491,32 +509,38 @@
             // 
             // btnVotar
             // 
+            this.btnVotar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnVotar.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVotar.Location = new System.Drawing.Point(677, 206);
             this.btnVotar.Name = "btnVotar";
             this.btnVotar.Size = new System.Drawing.Size(65, 29);
             this.btnVotar.TabIndex = 49;
             this.btnVotar.Text = "Votar";
-            this.btnVotar.UseVisualStyleBackColor = true;
+            this.btnVotar.UseVisualStyleBackColor = false;
             this.btnVotar.Click += new System.EventHandler(this.btnVotar_Click);
             // 
             // btnExibirVotacao
             // 
+            this.btnExibirVotacao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnExibirVotacao.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnExibirVotacao.Location = new System.Drawing.Point(581, 253);
             this.btnExibirVotacao.Name = "btnExibirVotacao";
             this.btnExibirVotacao.Size = new System.Drawing.Size(161, 39);
             this.btnExibirVotacao.TabIndex = 50;
             this.btnExibirVotacao.Text = "Exibir Última Votação";
-            this.btnExibirVotacao.UseVisualStyleBackColor = true;
+            this.btnExibirVotacao.UseVisualStyleBackColor = false;
             this.btnExibirVotacao.Click += new System.EventHandler(this.btnExibirVotacao_Click);
             // 
             // btnVerificarVezTabuleiro
             // 
+            this.btnVerificarVezTabuleiro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnVerificarVezTabuleiro.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnVerificarVezTabuleiro.Location = new System.Drawing.Point(581, 307);
             this.btnVerificarVezTabuleiro.Name = "btnVerificarVezTabuleiro";
             this.btnVerificarVezTabuleiro.Size = new System.Drawing.Size(161, 39);
             this.btnVerificarVezTabuleiro.TabIndex = 51;
             this.btnVerificarVezTabuleiro.Text = "Verificar Vez + Tabuleiro";
-            this.btnVerificarVezTabuleiro.UseVisualStyleBackColor = true;
+            this.btnVerificarVezTabuleiro.UseVisualStyleBackColor = false;
             this.btnVerificarVezTabuleiro.Click += new System.EventHandler(this.btnVerificarVezTabuleiro_Click);
             // 
             // tmrIniciar
@@ -526,22 +550,26 @@
             // 
             // btnTimer
             // 
+            this.btnTimer.BackColor = System.Drawing.Color.MediumSeaGreen;
+            this.btnTimer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnTimer.Location = new System.Drawing.Point(483, 365);
             this.btnTimer.Name = "btnTimer";
             this.btnTimer.Size = new System.Drawing.Size(74, 35);
             this.btnTimer.TabIndex = 52;
             this.btnTimer.Text = "Iniciar Timer";
-            this.btnTimer.UseVisualStyleBackColor = true;
+            this.btnTimer.UseVisualStyleBackColor = false;
             this.btnTimer.Click += new System.EventHandler(this.btnTimer_Click);
             // 
             // btnHistorico
             // 
+            this.btnHistorico.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(171)))), ((int)(((byte)(116)))), ((int)(((byte)(64)))));
+            this.btnHistorico.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnHistorico.Location = new System.Drawing.Point(581, 365);
             this.btnHistorico.Name = "btnHistorico";
             this.btnHistorico.Size = new System.Drawing.Size(138, 38);
             this.btnHistorico.TabIndex = 53;
             this.btnHistorico.Text = "Histórico";
-            this.btnHistorico.UseVisualStyleBackColor = true;
+            this.btnHistorico.UseVisualStyleBackColor = false;
             this.btnHistorico.Click += new System.EventHandler(this.btnHistorico_Click);
             // 
             // chkHistorico
@@ -567,6 +595,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.NavajoWhite;
             this.ClientSize = new System.Drawing.Size(946, 498);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.chkHistorico);
