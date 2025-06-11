@@ -1,6 +1,10 @@
 #  💻 Sistema Autônomo 🕹️
 ## Projeto Integrador
 
+![Image](https://github.com/user-attachments/assets/3c7e47e2-3611-4cb8-8f19-81255f297734)
+
+![Image](https://github.com/user-attachments/assets/656b20e0-1b9d-4c9d-a1af-5a879d873a1b)
+
 <table border="1">
   <tr>
     <td>C#</td>
