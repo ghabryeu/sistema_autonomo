@@ -148,7 +148,12 @@ namespace sistema_autonomo_2._0
 
         public static string ExibirCartas(int idJogador, string senhaJogador)
         {
-            string cartas = Jogo.ListarCartas(idJogador, senhaJogador);
+            string retorno = Jogo.ListarCartas(idJogador, senhaJogador);
+            retorno = retorno.Replace("\r", "");
+            string[] dados = retorno.Split(',');
+
+            string cartas = dados[0];
+
             return cartas;
         }
 

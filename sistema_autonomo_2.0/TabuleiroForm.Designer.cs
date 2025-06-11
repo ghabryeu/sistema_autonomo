@@ -1397,6 +1397,7 @@
             this.Controls.Add(this.pnlNobres);
             this.Controls.Add(this.pnlDignatarios);
             this.Controls.Add(this.pnlRei);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "TabuleiroForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TabuleiroForm";

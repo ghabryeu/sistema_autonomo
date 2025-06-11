@@ -15,7 +15,6 @@ namespace sistema_autonomo_2._0
     {
         VerificarErro verificarErro = new VerificarErro();
         TabuleiroForm tabuleiro;
-        Setor setor;
         List<Tabuleiro> estadoDoTabuleiro;
         Lobby lobby = new Lobby();
         Jogador jogador = new Jogador();
@@ -27,7 +26,10 @@ namespace sistema_autonomo_2._0
             InitializeComponent();
 
             lblVersao.Text = Jogo.versao; // versão da dll
-            lblGrupo.Text = "Juízes de Common Law";
+            txtNomeGrupo.Text = " Juízes de Common Law";
+
+            ListarSetores();
+            ListarPersonagens();
         }
 
         public void ListarPartidas()
@@ -93,7 +95,6 @@ namespace sistema_autonomo_2._0
             string id = idPartida.ToString();
 
             // exibindo dados obtidos no forms
-            lblIdPartidaCriada.Text = id;
             txtIdPartida.Text = id;
         }
 
@@ -137,6 +138,12 @@ namespace sistema_autonomo_2._0
         public void IniciarJogo()
         {
             string idJogador = txtIdJogador.Text;
+
+            if (!verificarErro.VerificarID(idJogador))
+            {
+                return;
+            }
+
             int id = Convert.ToInt32(idJogador);
             string senhaJogador = txtSenhaJogador.Text;
 
@@ -149,6 +156,12 @@ namespace sistema_autonomo_2._0
         public string ExibirCartas()
         {
             string idJogador = txtIdJogador.Text;
+
+            if (!verificarErro.VerificarID(idJogador))
+            {
+                return "";
+            }
+
             int id = Convert.ToInt32(idJogador);
             string senhaJogador = txtSenhaJogador.Text;
 
@@ -162,6 +175,12 @@ namespace sistema_autonomo_2._0
         public void VerificarVez()
         {
             string idPartida = txtIdPartida.Text;
+
+            if(!verificarErro.VerificarIdPartida(idPartida))
+            {
+                return;
+            }
+
             int id = Convert.ToInt32(idPartida);
 
             var resultado = Lobby.VerificarVez(id);
@@ -198,6 +217,7 @@ namespace sistema_autonomo_2._0
             string idJogador = txtIdJogador.Text;
             int id = Convert.ToInt32(idJogador);
             string senhaJogador = txtSenhaJogador.Text;
+
             //string setorStr = txtSetor.Text;
             //int setor = Convert.ToInt32(setorStr);
             //string personagem = txtPersonagem.Text;
@@ -273,6 +293,12 @@ namespace sistema_autonomo_2._0
         public void ExibirUltimaVotacao()
         {
             string idPartida = txtIdPartida.Text;
+
+            if(!verificarErro.VerificarIdPartida(idPartida))
+            {
+                return;
+            }
+
             int id = Convert.ToInt32(idPartida);
 
             dgvVerificarVez.DataSource = Lobby.ExibirUltimaVotacao(id);
@@ -297,16 +323,26 @@ namespace sistema_autonomo_2._0
         public void ConsultarHistorico()
         {
             string idPartida = txtIdPartida.Text;
+
+            if (!verificarErro.VerificarIdPartida(idPartida))
+            {
+                return;
+            }
+
             int id = Convert.ToInt32(idPartida);
 
             bool formatado = chkHistorico.Checked;
             bool completo = !chkHistorico.Checked;
 
-            dgvVerificarVez.DataSource = Lobby.ConsultarHistorico(id, formatado,  completo);
+            var historico = Lobby.ConsultarHistorico(id, formatado, completo);
+
+            lstHistorico.Items.Clear();
+            foreach (var item in historico)
+            {
+                lstHistorico.Items.Add(item);
+            }
         }
 
-        // ajustes: verificar os personagens que já foram colocados no tabuleiro
-        // pelos outros jogadores e não estão mais disponíveis
         public void AutoColocarPersonagem()
         {
             var nomes = Personagem.Nomes;
@@ -354,7 +390,6 @@ namespace sistema_autonomo_2._0
                         nomesUsados.Add(personagemSelecionado);
                         nomesDisponiveis.Remove(personagemSelecionado);
 
-                        label12.Text = nomesDisponiveis.Count.ToString();
                         ColocarPersonagem(setor, personagemSelecionado);
                     }
                     else
@@ -446,7 +481,7 @@ namespace sistema_autonomo_2._0
             // usar exibir cartas para votar
             // lista de personagens de cada jogador
             string cartas = ExibirCartas();
-            string[] meusPersonagens = cartas.Split(',');
+            char[] meusPersonagens = cartas.ToCharArray();
 
             string personagemSetorRei = null;
             foreach (var t in estadoDoTabuleiro)
@@ -458,33 +493,26 @@ namespace sistema_autonomo_2._0
                 }
             }
 
-            // comparar com meusPersonagens
-            bool ehMeu = false;
-            foreach (var p in meusPersonagens)
-            {
-                if (p.Trim() == personagemSetorRei)
-                {
-                    ehMeu = true;
-                    break;
-                }
-            }
+            // comparar personagem no setor Rei com as cartas do jogador
+            bool ehMeu = !string.IsNullOrEmpty(personagemSetorRei) &&
+                         meusPersonagens.Contains(personagemSetorRei[0]);
 
             // sim ou não
             string voto;
             if (ehMeu)
             {
-                voto = "s";
+                voto = "S";
             }
             else
             {
                 if (personagem.VotoRestante > 0)
                 {
-                    voto = "n";
+                    voto = "N";
                     personagem.VotoRestante--;
                 }
                 else
                 {
-                    voto = "s";
+                    voto = "S";
                 }
             }
 
@@ -531,9 +559,7 @@ namespace sistema_autonomo_2._0
 
         private void btnCriarPartida_Click(object sender, EventArgs e)
         {
-            CriarPartida();
-            ListarSetores();
-            ListarPersonagens();
+            CriarPartida();           
         }
 
         private void btnEntrarPartida_Click(object sender, EventArgs e)
@@ -606,7 +632,6 @@ namespace sistema_autonomo_2._0
             VerificarVez();
             ExibirCartas();
             AutomatizarAcao();
-            VerificarVez();
 
             tmrIniciar.Enabled = true; // habilitando o timer novamente
         }

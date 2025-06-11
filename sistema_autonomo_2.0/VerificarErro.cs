@@ -11,7 +11,7 @@ namespace sistema_autonomo_2._0
     {
         public bool VerificarNome(string retorno)
         {
-            if (retorno == "")
+            if (string.IsNullOrEmpty(retorno))
             {
                 MessageBox.Show("Não é possível prosseguir sem um nome", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -28,7 +28,7 @@ namespace sistema_autonomo_2._0
 
         public bool VerificarSenha(string retorno)
         {
-            if (retorno == "")
+            if (string.IsNullOrEmpty(retorno))
             {
                 MessageBox.Show("Não é possível prosseguir sem uma senha", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
@@ -39,7 +39,7 @@ namespace sistema_autonomo_2._0
 
         public bool VerificarID(string retorno)
         {
-            if (retorno == "")
+            if (string.IsNullOrEmpty(retorno))
             {
                 MessageBox.Show("Não é possível prosseguir sem um ID", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

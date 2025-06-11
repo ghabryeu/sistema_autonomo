@@ -15,5 +15,10 @@ namespace sistema_autonomo_2._0
             get { return acao; }
             set { acao = value; }
         }
+
+        public override string ToString()
+        {
+            return Acao;
+        }
     }
 }
